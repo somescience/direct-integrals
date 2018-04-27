@@ -45,8 +45,8 @@ urlcolor=myurlcolor}
 \newcommand{\Vect}[1]{\mathsf{Vect}_{#1}}	% vector spaces over a field
 \newcommand{\Ban}{\mathsf{Ban}}			% (complex) Banach spaces
 \newcommand{\Hilb}{\mathsf{Hilb}} 		% Hilb, cat of Hilbert spaces
-\newcommand{\Rep}[1]{\mathsf{Rep}(#1)}		% cat normal Hilbert space reps of a C*-algebra
-\newcommand{\NRep}[1]{\mathsf{NRep}(#1)}	% cat of normal Hilbert space reps of a W*-algebra
+\newcommand{\Rep}[1]{\mathsf{Rep}(#1)}		% cat normal Hilbert space reps of a C$^*$-algebra
+\newcommand{\NRep}[1]{\mathsf{NRep}(#1)}	% cat of normal Hilbert space reps of a W$^*$-algebra
 \newcommand{\id}[1]{1_{#1}}			% identity morphism
 
 % Theorem Environments
@@ -84,7 +84,7 @@ urlcolor=myurlcolor}
 \tikzstyle{bn}=[circle,inner sep=2pt,fill=black,draw=black,line width=0.8 pt]
 
 %%% draft stuff
-%\usepackage[draft]{showkeys}
+\usepackage[draft]{showkeys}
 \usepackage{todonotes}
 \newcommand{\tob}[1]{\todo[color=blue!40,inline]{#1}}
 
@@ -101,9 +101,9 @@ urlcolor=myurlcolor}
 
 %%%%%%%%%%%% title page stuff %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{The universal property of direct integrals in W*-categories}
+\title{The universal property of direct integrals in W$^*$-categories}
 
-\author{Tobias Fritz}
+\author{Tobias Fritz, Robert Furber, Bas Westerbaan}
 
 \address{Max Planck Institute for Mathematics in the Sciences, Leipzig, Germany}
 \email{fritz@mis.mpg.de}
@@ -115,28 +115,32 @@ urlcolor=myurlcolor}
 \thanks{\textit{Acknowledgements.} }
 
 \begin{abstract}
-We formulate a universal property for infinite direct sums in W*-categories, and prove that this indeed characterizes the usual infinite direct sums in the W*-category of representations of a C*-algebra. We do the same for direct integrals, in which case we need to work with measurable W*-categories.
+Using enrichment in Banach spaces, we observe that one can formulate universal properties characterizing universal objects in C$^*$-categories in such a way that they guarantee uniqueness up to unique unitaries. We then formulate such a universal property for infinite direct sums in W$^*$-categories, and prove that this indeed characterizes the standard infinite direct sums in the W$^*$-category of normal representations of a W$^*$-algebra. We do the same for direct integrals, in which case we need to work with measurable W$^*$-categories.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-\section{C*-categories}
-For the balance of this section, let~$C$ be a C$^*$-category. \cite{wstarcat}
+
+\section{C$^*$-categories}
+
+For this section, we work in a C$^*$-category \cite{wstarcat} denoted by $\cat{C}$.
 We start with a generalization of~\cite[Lemma 7]{westerbaan2016universal}
     to C$^*$-categories.
+
 \begin{lem}
 For any~$a\colon A \to B$ with~$\|a\| \leq 1$
     and projections~$s \colon A \to A$,
         $t\colon B\to B$,
-    we have
-    \begin{equation*}
-     a^* t a \leq 1-s \quad\iff\quad
-    a s a^* \leq 1 - t \quad\iff\quad
-    tas = 0 \quad\iff\quad
-    sa^* t = 0.
-    \end{equation*}\label{contrapositionlemma}
+	the following are equivalent:
+\begin{enumerate}
+\item $a^* t a \leq 1-s$,
+\item $a s a^* \leq 1 - t$,
+\item $tas = 0$,
+\item $sa^* t = 0$.
+\end{enumerate}
+\label{contrapositionlemma}
 \end{lem}
 \begin{proof}
 We will first prove~$a^*t a \leq 1-s \Leftrightarrow tas=0$.
@@ -154,11 +158,12 @@ To finish the proof, it is sufficient to
 
 \begin{lem}
 Let~$a \colon A \leftrightarrows B \colon b$ be any two morphisms
-    such that~$\|a \| = \| b\| = 1$ and~$ab=1$.
+    such that~$\|a \| \leq 1$ and $\| b\| \leq 1$ and~$ab=1$.
     Then~$b$ is an isometry with~$a=b^*$.
+\label{isometrylemma}
 \end{lem}
 \begin{proof}
-    To start, note~$\|a ^*a\| = \|a\|^2 = 1$, so~$a^*a \leq 1$.
+    To start, note~$\|a ^*a\| = \|a\|^2 \leq 1$, so~$a^*a \leq 1$.
     Similarly~$b^*b \leq 1$.
     Combined~$1 = b^*a^*ab \leq b^*b \leq 1$, hence~$b^*b=1$.
     Similarly~$aa^*=1$.
@@ -169,25 +174,26 @@ Let~$a \colon A \leftrightarrows B \colon b$ be any two morphisms
     We are done: $a = aa^*a=abb^*=b^*$.
 \end{proof}
 
-\section{W*-categories}
+We will need the full power of this result only in the next section, but the following special case is generally useful for the definition of universal properties in C$^*$-categories:
 
-Let $C$ be a W*-category~\cite{wstarcat}, such as $\Hilb$ or $\Rep{A}$, the category of Hilbert space representations of a C*-algebra $A$.
-
-
-\begin{lem}
-Let $u : A \to B$ be an invertible morphism with $\| u \| = \| u^{-1} \| = 1$. Then $u$ is unitary.
+\begin{cor}
+Let $u : A \to B$ be an invertible morphism with $\| u \| \leq 1$ and $\| u^{-1} \| \leq 1$. Then $u$ is unitary.
 \label{unitaries}
-\end{lem}
+\end{cor}
 
-\todo[inline]{We could state this at the generality of C*-cats}
+Now let $\Ban$ be the category of Banach spaces with bounded linear maps of norm $\leq 1$. Every C$^*$-category is $\Ban$-enriched. Lemma~\ref{unitaries} and the Yoneda lemma imply that for any representable functor $\cat{C} \to \Ban$, the representing object is unique up to unique \emph{unitary} isomorphism. This is a desideratum of a notion of universal property for C$^*$-categories, and more generally for all dagger categories~\cite{daglims}. The lemma tells us that the compatibility with the dagger structure is automatic thanks to the enrichment in $\Ban$, so that we do not need to formulate our universal properties in the form of dagger limits as in~\cite{daglims}.
 
-\begin{proof}
-We have $\| u^* u \| = 1$ by the C*-identity, and likewise $\| u^{-1} (u^{-1})^* \| = 1$. Since $(u^* u)^{-1} = u^{-1} (u^{-1})^*$, we also have $\| (u^* u)^{-1} \| = 1$. This makes $u^* u$ into a positive element of unit norm whose inverse also has unit norm, and therefore $u^* u = \id{A}$. By the same token, we obtain $u u^* = \id{B}$.
-\end{proof}
+In summary, our notion of universal property in a C$^*$-category is the standard one for enriched categories, namely with enrichment in $\Ban$:
 
-Now let $\Ban$ be the category of Banach spaces with bounded linear maps of norm $\leq 1$. Every W*-category is $\Ban$-enriched. Lemma~\ref{unitaries} and the Yoneda lemma imply that for any representable functor $\cat{C} \to \Ban$, the representing object is unique up to unique \emph{unitary} isomorphism. This is a desideratum of a notion of universal property for W*-categories, and more generally for all dagger categories~\cite{daglims}. The lemma tells us that the compatibility with the dagger structure is automatic thanks to the enrichment in $\Ban$, so that we do not need to formulate our universal properties in the form of dagger limits as in~\cite{daglims}.
+\begin{defn}
+A functor $F : \cat{C} \to \Ban$ is \emph{representable} if there is an object $A \in \cat{C}$ together with a natural isomorphism $\cat{C}(A,-)\cong F$ that is a componentwise isometric isomorphism of Banach spaces.
+\end{defn}
+
+Moreover, thanks to Corollary~\ref{unitaries}, the representing object is unique up to a unique unitary: if both $A$ and $B$ represent $F$ via $\cat{C}(A,-)\cong F\cong \cat{C}(B,-)$, then the Yoneda lemma gives us an isomorphism $u : A \to B$. Since the natural isomorphism between the hom-functors is required to be a componentwise isometry, we have $\| u \| = \| u^{-1} \| = 1$, making $u$ into a unitary.
 
 \section{The universal property of infinite direct sums}
+
+We now turn to a particular universal property and study infinite direct sums. (While our considerations also apply to finite direct sums, in this case our discussion provides nothing new, since then it reduces to the well-understood case of biproducts in an additive category.) From now on, we take $C$ to be a W$^*$-category~\cite{wstarcat}, such as $\Hilb$ or $\Rep{A}$, the category of Hilbert space representations of a C$^*$-algebra $A$.
 
 For $(A_i)_{i\in I}$ a family of objects in $\cat{C}$, we consider the functor
 \[
@@ -203,14 +209,26 @@ considered as a Banach space under the norm
 \]
 This is functorial in $B$ in the obvious way.
 
-\todo[inline]{Is it actually complete?}
+\begin{lem}
+$\bigoplus_i \cat{C}(A_i,-)$ is complete, and therefore a Banach space.
+\end{lem}
+
+The proof is analogous to the standard proof showing that $\ell^2(I)$ is a Hilbert space. \tob{I haven't done this yet, so for now this statement is wishful thinking}
+
+\begin{proof}
+Suppose that we are given a Cauchy sequence of families $( ( f_i^{(n)} )_{i\in I} )_{n\in\N}$.
+
+\todo{Complete this! Showing that $(f_i^{(n)})_{n\in\N}$ is Cauchy for each $i$ needs some form of Cauchy-Schwarz}
+\end{proof}
+
+We now get to our main definition:
 
 \begin{defn}
 \label{directsumdef}
 An \emph{$I$-indexed direct sum} of the family of objects $(A_i)_{i\in I}$ is an object $\bigoplus_i A_i$ which represents the $\Ban$-enriched functor $\bigoplus_i \cat{C}(A_i,-)$.
 \end{defn}
 
-By Lemma~\ref{unitaries} and the $\Ban$-enriched Yoneda lemma, this characterizes infinite direct sums up to unique isomorphism. Since we are in a dagger category, the same holds dually, meaning that $\bigoplus_i A_i$ also represents the functor
+By the discussion of the previous section, this characterizes infinite direct sums up to unique unitaries. Since we are in a dagger category, the same holds dually, meaning that $\bigoplus_i A_i$ also represents the functor
 \[
 	\bigoplus_i \cat{C}(-,A_i) \: : \: \cat{C}^\op \to \Ban
 \]
@@ -220,13 +238,44 @@ given by associating to every object $B$ the vector space
 \]
 with norm
 \[
-	\| (f_i)_{i \in I} \| := \left\| \sum_i f_i^* f_i \right\|^{1/2}.
+	\| (f_i)_{i \in I} \| := \left\| \sum_i f_i^* f_i \right\|^{1/2},
 \]
 which is functorial in $B$ in the obvious way.
 
-\newcommand{\alg}{N}	% a W*-algebra
+\begin{thm}
+The following are equivalent:
+\begin{enumerate}
+\item\label{universalprop} $\bigoplus_i A_i$ is an $I$-indexed direct sum.
+\item\label{biprodsum} There is a family of morphisms $\left(\kappa_j : A_j \to \bigoplus_i A_i\right)_{j\in I}$ such that $\kappa_j^*\kappa_k = \delta_{jk}$, and
+\beq
+\label{complete}
+	\sum_j \kappa_j \kappa_j^* = 1_{\bigoplus_i A_i}
+\eeq
+ultraweakly.
+\end{enumerate}
+\end{thm}
 
-For a W*-algebra $\alg$, we let $\NRep{\alg}$ be its category of normal representations on Hilbert spaces. For example, $\alg$ may be the double dual of a C*-algebra, in which case $\NRep{\alg}$ is equivalent to the category of representations of the C*-algebra.\footnote{Our choice of font $\alg$ is the same as that for categories, suggesting that $\alg$ may as well more generally be a small W*-category, and the same statements would hold. Since one can always take the convolution W*-algebra of any small W*-category, resulting in the same category of representations, there is no loss of generality in restricting ourselves to W*-algebras.}
+\begin{proof}
+We write $A$ as shorthand for $\bigoplus_i A_i$.
+
+Assuming \ref{universalprop}, we define $(\kappa_j : A_j \to A)$ to be the family that corresponds to $\id{A}$ under the given isomorphism $\bigoplus_i \cat{C}(A_i,A) \cong \cat{C}(A,A)$. For fixed $j\in J$, also the family $(\delta_{ij} : A_i \to A_j)$ corresponds to some morphism $\pi_j : A \to A_j$. Applying naturality with respect to $\pi_j$ gives the diagram
+\[\begin{tikzcd}
+	\bigoplus_i \cat{C}(A_i,A) \ar{r}{\cong} \ar{d}{(\pi_j\circ -)_i} & \cat{C}(A,A) \ar{d}{\pi_j\circ -} \\
+	\bigoplus_i \cat{C}(A_i,A_j) \ar{r}{\cong} & \cat{C}(A,A_j)
+\end{tikzcd}\]
+Starting with the family $(\kappa_i)$ on the upper left, we get $(\pi_j\circ\kappa_i)$ by going down, or alternatively $(\delta_{ij})$ by going around; therefore we have $\pi_j \kappa_i = \delta_{ij}$. By the isometric isomorphism assumption, we moreover have $\| \id{A} \| = \| \sum_i \kappa_i \kappa_i^* \|$, and therefore $\| \kappa_j \| \leq 1$; and similarly $\| \pi_j \| \leq 1$. By Lemma~\ref{isometrylemma}, this implies $\pi_j = \kappa_j^*$. We therefore have $\kappa_j^*\kappa_i = \delta_{ij}$, as desired. This also implies that the $\kappa_j \kappa_j^*$ are mutually orthogonal projections. In order to also prove the completeness relation~\eqref{complete}, let $p : A\to A$ be any other projection that is orthogonal to each of the $\kappa_j \kappa_j^*$; we need to show $p = 0$. Again by naturality, under the isomorphism $\bigoplus_i \cat{C}(A_i,A)$, the new $p$ corresponds to the family $(p\kappa_i) = (0)$. This implies indeed $p=0$.
+
+Assuming \ref{biprodsum}, \todo{write this}
+\end{proof}
+
+\begin{rem}
+For finite $I$, these direct sums are also dagger limits in the sense of~\cite{daglims}. For infinite $I$, this is no longer the case, since infinite direct sums are not even limits in the usual $\cat{Set}$-enriched sense; compare~\cite[Theorem~5.2]{daglims}. Hence our definition are better adapted to the context of W$^*$-categories, such as $\cat{Hilb}$, than those of~\cite{daglims}.
+\tob{We can tone down the last sentence a bit if it's too demeaning}
+\end{rem}
+
+\newcommand{\alg}{N}	% a W$^*$-algebra
+
+For a W$^*$-algebra $\alg$, we let $\NRep{\alg}$ be its category of normal representations on Hilbert spaces. For example, $\alg$ may be the double dual of a C$^*$-algebra, in which case $\NRep{\alg}$ is equivalent to the category of representations of the C$^*$-algebra.\footnote{Our choice of font $\alg$ is the same as that for categories, suggesting that $\alg$ may as well more generally be a small W$^*$-category, and the same statements would hold. Since one can always take the convolution W$^*$-algebra of any small W$^*$-category, resulting in the same category of representations, there is no loss of generality in restricting ourselves to W$^*$-algebras.}
 
 \begin{thm}
 In $\NRep{\alg}$, any $\ell^2$-direct sum
@@ -239,24 +288,6 @@ equipped with the blockwise representation of $\alg$, is indeed an \emph{$I$-ind
 \begin{proof}
 \todo[inline]{do this}
 \end{proof}
-
-\begin{thm}
-The following are equivalent:
-\begin{enumerate}
-\item $\bigoplus_i A_i$ is an $I$-indexed direct sum.
-\item There is a family of morphisms $\left(\kappa_j : A_j \to \bigoplus_i A_i\right)_{j\in I}$ such that $\kappa_j^*\kappa_k = \delta_{jk}$, and
-\[
-	\sum_j \kappa_j \kappa_j^* = 1_{\bigoplus_i A_i}
-\]
-ultraweakly.
-\end{enumerate}
-\end{thm}
-
-\begin{proof}
-\todo[inline]{do this}
-\end{proof}
-
-\todo[inline]{Does this also result in a dagger limit in the sense of~\cite{daglims}?}
 
 \section{Direct integrals}
 
@@ -280,7 +311,7 @@ which is functorial in $B$ in the obvious way.
 \todo[inline]{Is this the ``right'' definition? What is the relation to~\cite{measureablecats}?}
 
 \begin{defn}
-A W*-category \emph{has direct integrals} if it has direct integrals for $\sigma$-finite measure spaces and arbitrary direct sums.
+A W$^*$-category \emph{has direct integrals} if it has direct integrals for $\sigma$-finite measure spaces and arbitrary direct sums.
 \end{defn}
 
 \todo[inline]{Is the restriction to $\sigma$-finite the ``right'' definition?}
