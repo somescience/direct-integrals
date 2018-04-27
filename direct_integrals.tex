@@ -2,6 +2,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{multicol}
 \usepackage[canadian]{babel}
 \usepackage{xcolor}
 \usepackage{geometry}
@@ -121,9 +122,57 @@ We formulate a universal property for infinite direct sums in W*-categories, and
 
 \section{Introduction}
 
+\section{C*-categories}
+For the balance of this section, let~$C$ be a C$^*$-category. \cite{wstarcat}
+We start with a generalization of~\cite[Lemma 7]{westerbaan2016universal}
+    to C$^*$-categories.
+\begin{lem}
+For any~$a\colon A \to B$ with~$\|a\| \leq 1$
+    and projections~$s \colon A \to A$,
+        $t\colon B\to B$,
+    we have
+    \begin{equation*}
+     a^* t a \leq 1-s \quad\iff\quad
+    a s a^* \leq 1 - t \quad\iff\quad
+    tas = 0 \quad\iff\quad
+    sa^* t = 0.
+    \end{equation*}\label{contrapositionlemma}
+\end{lem}
+\begin{proof}
+We will first prove~$a^*t a \leq 1-s \Leftrightarrow tas=0$.
+    Assume~$a^* t a \leq 1-s$.
+    Then~$0 \leq s a^* t a s \leq s (1-s) s = 0$.
+    Thus~$s a^* t a s = 0$, which is to say~$tas = 0$.
+    Now, assume~$tas = 0$.
+    Then~$ta = ta(1-s)$ and~$a^*t = (1-s)a^* t$.
+    Hence~$a^* ta = (1-s)a^*ta(1-s) \leq (1-s)$.
+A similar argument proves~$as a^* \leq 1-t \Leftrightarrow sa^*t=0$.
+To finish the proof, it is sufficient to
+        show~$tas=0 \Leftrightarrow sa^*t=0$, which follows directly
+        by applying~$(\ )^*$.
+\end{proof}
+
+\begin{lem}
+Let~$a \colon A \leftrightarrows B \colon b$ be any two morphisms
+    such that~$\|a \| = \| b\| = 1$ and~$ab=1$.
+    Then~$b$ is an isometry with~$a=b^*$.
+\end{lem}
+\begin{proof}
+    To start, note~$\|a ^*a\| = \|a\|^2 = 1$, so~$a^*a \leq 1$.
+    Similarly~$b^*b \leq 1$.
+    Combined~$1 = b^*a^*ab \leq b^*b \leq 1$, hence~$b^*b=1$.
+    Similarly~$aa^*=1$.
+    Clearly~$bb^*bb^* = b 1 b^* = bb^*$, so~$b$ is an isometry.
+    Now~$a (1-bb^*) a^* = aa^* - abb^*a^* = 1-1=0$
+    So~$a^* (1-0) a \leq bb^*$ by Lemma~\ref{contrapositionlemma}.
+    Similarly~$bb^* \leq a^*a$. Hence~$bb^*=a^*a$.
+    We are done: $a = aa^*a=abb^*=b^*$.
+\end{proof}
+
 \section{W*-categories}
 
 Let $C$ be a W*-category~\cite{wstarcat}, such as $\Hilb$ or $\Rep{A}$, the category of Hilbert space representations of a C*-algebra $A$.
+
 
 \begin{lem}
 Let $u : A \to B$ be an invertible morphism with $\| u \| = \| u^{-1} \| = 1$. Then $u$ is unitary.
@@ -250,3 +299,5 @@ If everything works out, this is due to a nice kind of compositionality of direc
 \bibliography{direct_integrals}
 
 \end{document}
+
+% vim: ft=tex.latex
