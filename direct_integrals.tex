@@ -8,6 +8,7 @@
 \usepackage{geometry}
 \usepackage{xifthen} % provides \isempty
 \usepackage{xparse} % new commands with more than one optional argument
+\usepackage{fixltx2e} % for \textsubscript
 \newcommand{\unlim}{\qopname\relax m{unlim}}
 
 % commutative diagrams
@@ -47,7 +48,7 @@ urlcolor=myurlcolor}
 \newcommand{\Ban}{\mathsf{Ban}}			% (complex) Banach spaces
 \newcommand{\Hilb}{\mathsf{Hilb}} 		% Hilb, cat of Hilbert spaces
 \newcommand{\Rep}[1]{\mathsf{Rep}(#1)}		% cat normal Hilbert space reps of a C$^*$-algebra
-\newcommand{\NRep}[1]{\mathsf{NRep}(#1)}	% cat of normal Hilbert space reps of a W$^*$-algebra
+\newcommand{\NRep}[1]{\mathsf{nRep}(#1)}	% cat of normal Hilbert space reps of a W$^*$-algebra
 \newcommand{\id}[1]{1_{#1}}			% identity morphism
 
 % Theorem Environments
@@ -244,50 +245,51 @@ with norm
 which is functorial in $B$ in the obvious way.
 
 \begin{thm}
-The following are equivalent:
+The following are equivalent for an object $A$:
 \begin{enumerate}
-\item\label{universalprop} $\bigoplus_i A_i$ is an $I$-indexed direct sum.
+\item\label{universalprop} $A$ is an $I$-indexed direct sum $\bigoplus_i A_i$.
 \item\label{universalprop2} 
 There is a family of
-        morphisms~$\left(\kappa_j : A_j \to \bigoplus_i A_i\right)_{j\in I}$
+        morphisms~$\left(\kappa_j : A_j \to A\right)_{j\in I}$
         with~$\sum_{j \in I} \kappa_j \kappa_j^* < \infty$
     such that for any object~$B$
         and family of
         morphisms~$\left(f_j: A_j \to B\right)_{j\in I}$
         with~$\sum_{j \in I}f_j f_j^* < \infty$,
-        there is a unique~$f\colon \bigoplus_i A_i \to B$
+        there is a unique~$f\colon A \to B$
         such that $f \kappa_j = f_j$ for all~$j \in I$, and $\| f \|^2 = \| \sum_j f_j f_j^* \|$.
-\item\label{biprodsum} There is a family of morphisms $\left(\kappa_j : A_j \to \bigoplus_i A_i\right)_{j\in I}$ such that $\kappa_j^*\kappa_k = \delta_{jk}$, and
+\item\label{biprodsum} There is a family of morphisms $\left(\kappa_j : A_j \to A\right)_{j\in I}$ such that $\kappa_i^*\kappa_j = \delta_{ij}$, and
 \beq
 \label{complete}
-        \sum_{j\in I} \kappa_j \kappa_j^* \ =\  1_{\bigoplus_i A_i}.
+        \sum_{j\in I} \kappa_j \kappa_j^* \ =\  1_A.
 \eeq
 \end{enumerate}
 \end{thm}
 
+One can also consider each of these three statements as a structure rather than a mere property, and then the proof establishes a bijection between these structures.
+
 \begin{proof}
-We write $A$ as shorthand for $\bigoplus_i A_i$.
-
-Assuming \ref{universalprop}, we define $(\kappa_j : A_j \to A)$ to be the family that corresponds to $\id{A}$ under the given isomorphism $\bigoplus_i \cat{C}(A_i,A) \cong \cat{C}(A,A)$. For fixed $j\in J$, also the family $(\delta_{ij} : A_i \to A_j)$ corresponds to some morphism $\pi_j : A \to A_j$. Applying naturality with respect to $\pi_j$ gives the diagram
+\ref{universalprop2} is a simple reformulation of the universal property \ref{universalprop} via the Yoneda lemma, as follows. Given a natural isometric isomorphism $\cat{C}(A,B) \cong \bigoplus_i \cat{C}(A_i,B)$, we define the family $(\kappa_i)$ to be the image of $\id{A}$. Then for any $f : A \to B$, the naturality diagram
 \[\begin{tikzcd}
-	\bigoplus_i \cat{C}(A_i,A) \ar{r}{\cong} \ar{d}{(\pi_j\circ -)_i} & \cat{C}(A,A) \ar{d}{\pi_j\circ -} \\
-	\bigoplus_i \cat{C}(A_i,A_j) \ar{r}{\cong} & \cat{C}(A,A_j)
+	\cat{C}(A,A) \ar{r}{\cong} \ar{d}{f\circ -} & \bigoplus_i \cat{C}(A_i,A) \ar{d}{(f\circ -)} \\
+	\cat{C}(A,B) \ar{r}{\cong} & \bigoplus_i \cat{C}(A_i,B)
 \end{tikzcd}\]
-Starting with the family $(\kappa_i)$ on the upper left, we get $(\pi_j\circ\kappa_i)$ by going down, or alternatively $(\delta_{ij})$ by going around; therefore we have $\pi_j \kappa_i = \delta_{ij}$. By the isometric isomorphism assumption, we moreover have $\| \id{A} \| = \| \sum_i \kappa_i \kappa_i^* \|$, and therefore $\| \kappa_j \| \leq 1$; and similarly $\| \pi_j \| = \| \id{A} \| \leq 1$. By Lemma~\ref{isometrylemma}, this implies $\pi_j = \kappa_j^*$. We therefore have $\kappa_j^*\kappa_i = \delta_{ij}$, as desired. This also implies that the $\kappa_j \kappa_j^*$ are mutually orthogonal projections. In order to also prove the completeness relation~\eqref{complete}, let $p : A\to A$ be any other projection that is orthogonal to each of the $\kappa_j \kappa_j^*$; we need to show $p = 0$. Again by naturality, under the isomorphism $\bigoplus_i \cat{C}(A_i,A)$, the new $p$ corresponds to the family $(p\kappa_i) = (0)$. This implies indeed $p=0$.
+shows that the universal property takes $f$ to the family $(f_j) := (f\kappa_j)$. By the definition of the norm on $\bigoplus_i \cat{C}(A_i,B)$ and the assumption that the universal property is an isometric isomorphism, we indeed have $\| f \|^2 = \left\| \sum_j f_j f_j^* \right\|$, which also gives $\sum_j \kappa_j \kappa_j^* < \infty$ in the case $f = \id{A}$. Conversely, it is clear that any family $(\kappa_j)$ as in~\ref{universalprop2} gives an isometric isomorphism $\cat{C}(A,B) \cong \bigoplus_i \cat{C}(A_i,B)$ that is natural in $B$.
 
-Assuming \ref{biprodsum},
-let~$\left(f_j: A_j \to B\right)_{j\in I}$ be any family of morphisms
+We now derive \ref{biprodsum} from \ref{universalprop2}. Applying the assumption on norms with $(f_j) = (\kappa_j)$ gives $\| \sum_i \kappa_i \kappa_i^* \| = \| \id{A} \|$, and therefore $\| \kappa_j \| \leq 1$. For fixed $j\in J$, the family $(\delta_{ij} : A_i \to A_j)$ corresponds to some morphism $\pi_j : A \to A_j$ such that $\pi_j\circ\kappa_i = \delta_{ij}$. Again by the isometry property, we have $\| \pi_j \| = \| \id{A} \| \leq 1$. By Lemma~\ref{isometrylemma}, this implies $\pi_j = \kappa_j^*$. We therefore have $\kappa_j^*\kappa_i = \delta_{ij}$, as desired. This also implies that the $\kappa_j \kappa_j^*$ are mutually orthogonal projections. In order to also prove the completeness relation~\eqref{complete}, let $p : A\to A$ be any other projection that is orthogonal to each of the $\kappa_j \kappa_j^*$; we need to show $p = 0$. Again by naturality, under the isomorphism $\cat{C}(A,A) \cong \bigoplus_i \cat{C}(A_i,A)$, the new $p$ corresponds to the family $(p\kappa_i) = (0)$, where $p\kappa_i = 0$ follows from the assumed orthogonality. This implies indeed $p=0$ by the uniqueness part of the universal property.
+
+We finally show that \ref{biprodsum} implies \ref{universalprop2}. So let~$\left(f_j: A_j \to B\right)_{j\in I}$ be any family of morphisms
         with~$\sum_{j \in I}f_jf_j^* < \infty$.
 The homset~$C(B,A)$
     is a self-dual Hilbert~$\cat{C}(B,B)$-module
     with~$\cat{C}(B,B)$-valued inner
-    product~$\langle g, f\rangle \equiv g^*f$.\cite[2.15]{wstarcat}
+    product~$\langle g, f\rangle \equiv g^*f$~\cite[2.15]{wstarcat}.
 The self-duality is equivalent to the fact
     that~$\cat{C}(B,A)$ is complete in the \emph{ultranorm} topology;
     that is, the uniformity
     generated by the seminorms~$\| f \|_\omega \equiv \omega(\langle f,f\rangle)^\frac{1}{2}$
     for normal states~$\omega$ on~$\cat{C}(B,B)$~\cite[\S149\textsubscript{V}]{bas}.
-    Pick any normal state~$\omega$ on~$\cat{C}(B,B)$.
+    Pick any normal state~$\omega$ on~$\cat{C}(B,B)$
         and finite subset~$S \subseteq I$.  We have
 \begin{alignat*}{2}
     \bigl\| \sum_{j \in S} \kappa_j f_j^* \bigr\|^2_\omega
@@ -299,9 +301,9 @@ The self-duality is equivalent to the fact
     \Bigr) &\qquad&\text{as~$\kappa_j^*\kappa_i = \delta_{ij}$}.
 \end{alignat*}
 From this and~$\sum_{j \in I} f_jf_j^* < \infty$,
-    it follows that~$(\sum_{j \in S} \kappa_j f_j^*)_S$
-    is ultranorm Cauchy.
-    Define~$f \equiv ( \sum_{j \in I} \kappa_jf_j^* )^*$,
+    it follows that the net~$\left(\sum_{j \in S} \kappa_j f_j^*\right)_S$
+    is ultranorm Cauchy as $S$ ranges over all finite subsets of $I$.
+    Define~$f := \left( \sum_{j \in I} \kappa_jf_j^* \right)^*$,
         where the sum is understood to converge ultranorm.
 The assignment~$f \mapsto \kappa_j^*f$
     yields a bounded~$\cat{C}(B,B)$-linear map between
@@ -313,6 +315,7 @@ The assignment~$f \mapsto \kappa_j^*f$
              =  \sum_i \kappa_{j }^*\kappa_i f_i^*
             =  f_j^*$
             and so~$f \kappa_j = f_j$ as desired.
+\todo[inline]{Show equality of norms}
 Finally, to show uniqueness,
     assume~$f'\colon A \to B$ is any (other)
     morphism with~$f' \kappa_i = f_i$.
@@ -320,7 +323,7 @@ Finally, to show uniqueness,
        converges ultrastrongly
        and so ultranorm as well.
 With similar reasoning as before,
-        the map~$f \mapsto f' f$ is ultranorm continuous,
+        the composition map~$g \mapsto f' g$ is ultranorm continuous,
         hence
 \begin{equation*}
     f'
@@ -334,11 +337,17 @@ With similar reasoning as before,
 \end{proof}
 
 \begin{rem}
-For finite $I$, these direct sums are also dagger limits in the sense of~\cite{daglims}. For infinite $I$, this is no longer the case, since infinite direct sums are not even limits in the usual $\cat{Set}$-enriched sense; compare~\cite[Theorem~5.2]{daglims}. Hence our definition are better adapted to the context of W$^*$-categories, such as $\cat{Hilb}$, than those of~\cite{daglims}.
+For finite $I$, these direct sums are also dagger limits in the sense of~\cite{daglims}. For infinite $I$, this is no longer the case, since infinite direct sums are not even limits; compare the degeneracy result~\cite[Theorem~5.2]{daglims}, which indicates that infinite dagger products cannot be expected to exist. Thus our Definition~\ref{directsumdef} seems better adapted to the context of Hilbert spaces or other W$^*$-categories than those of~\cite{daglims}.
 \tob{We can tone down the last sentence a bit if it's too demeaning}
 \end{rem}
 
-\newcommand{\alg}{N}	% a W$^*$-algebra
+As a simple consequence, we have a generalization of~\cite[Proposition~4.9]{Rieffel1974}.
+
+\begin{cor}
+A normal $*$-functor automatically preserves direct sums.
+\end{cor}
+
+\newcommand{\alg}{\cat{N}}	% a W$^*$-algebra
 
 For a W$^*$-algebra $\alg$, we let $\NRep{\alg}$ be its category of normal representations on Hilbert spaces. For example, $\alg$ may be the double dual of a C$^*$-algebra, in which case $\NRep{\alg}$ is equivalent to the category of representations of the C$^*$-algebra.\footnote{Our choice of font $\alg$ is the same as that for categories, suggesting that $\alg$ may as well more generally be a small W$^*$-category, and the same statements would hold. Since one can always take the convolution W$^*$-algebra of any small W$^*$-category, resulting in the same category of representations, there is no loss of generality in restricting ourselves to W$^*$-algebras.}
 
