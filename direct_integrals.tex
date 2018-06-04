@@ -10,6 +10,7 @@
 \usepackage{xparse} % new commands with more than one optional argument
 \usepackage{fixltx2e} % for \textsubscript
 \newcommand{\unlim}{\qopname\relax m{unlim}}
+\newcommand{\uwlim}{\qopname\relax m{uwlim}}
 
 % commutative diagrams
 \usepackage{tikz}
@@ -151,7 +152,7 @@ We will first prove~$a^*t a \leq 1-s \Leftrightarrow tas=0$.
     Thus~$s a^* t a s = 0$, which is to say~$tas = 0$.
     Now, assume~$tas = 0$.
     Then~$ta = ta(1-s)$ and~$a^*t = (1-s)a^* t$.
-    Hence~$a^* ta = (1-s)a^*ta(1-s) \leq (1-s)$.
+    Hence~$a^* ta = (1-s)a^*ta(1-s) \leq 1-s$, as desired.
 A similar argument proves~$as a^* \leq 1-t \Leftrightarrow sa^*t=0$.
 To finish the proof, it is sufficient to
         show~$tas=0 \Leftrightarrow sa^*t=0$, which follows directly
@@ -160,7 +161,7 @@ To finish the proof, it is sufficient to
 
 \begin{lem}
 Let~$a \colon A \leftrightarrows B \colon b$ be any two morphisms
-    such that~$\|a \| \leq 1$ and $\| b\| \leq 1$ and~$ab=1$.
+    such that~$\|a \| \leq 1$, $\| b\| \leq 1$ and~$ab=1$.
     Then~$b$ is an isometry with~$a=b^*$.
 \label{isometrylemma}
 \end{lem}
@@ -170,7 +171,7 @@ Let~$a \colon A \leftrightarrows B \colon b$ be any two morphisms
     Combined~$1 = b^*a^*ab \leq b^*b \leq 1$, hence~$b^*b=1$.
     Similarly~$aa^*=1$.
     Clearly~$bb^*bb^* = b 1 b^* = bb^*$, so~$b$ is an isometry.
-    Now~$a (1-bb^*) a^* = aa^* - abb^*a^* = 1-1=0$
+    Now~$a (1-bb^*) a^* = aa^* - abb^*a^* = 1-1=0$.
     So~$a^* (1-0) a \leq bb^*$ by Lemma~\ref{contrapositionlemma}.
     Similarly~$bb^* \leq a^*a$. Hence~$bb^*=a^*a$.
     We are done: $a = aa^*a=abb^*=b^*$.
@@ -236,11 +237,17 @@ By the discussion of the previous section, this characterizes infinite direct su
 \]
 given by associating to every object $B$ the vector space
 \[
-	\bigoplus_i \cat{C}(B, A_i) := \left\{ (f_i : B \to A_i)_{i\in I} \Biggm\vert \sum_i f_i^* f_i < \infty \right\},
+	\bigoplus_i \cat{C}(B, A_i) \ := \ \bigl\{\, (f_i : B \to A_i)_{i\in I} \bigm\vert \sum_i f_i^* f_i < \infty \,\bigr\},
 \]
-with norm
+where the sum is taken in the ultraweak topology\footnote{
+    For positive elements~$(x_i)_{i \in I}$ of a W$^*$-algebra,
+        convergence and value
+        of the sum~$\sum_{i \in I} x_i $
+        coincides in the ultraweak and ultrastrong topology
+        and, in fact, equals the supremum of the partial sums.}
+    and where we use the norm
 \[
-	\| (f_i)_{i \in I} \| := \left\| \sum_i f_i^* f_i \right\|^{1/2},
+	\| (f_i)_{i \in I} \|\  := \ \Bigl\| \,\sum_i f_i^* f_i \,\Bigr\|^{1/2},
 \]
 which is functorial in $B$ in the obvious way.
 
@@ -252,12 +259,12 @@ The following are equivalent for an object $A$:
 There is a family of
         morphisms~$\left(\kappa_j : A_j \to A\right)_{j\in I}$
         with~$\sum_{j \in I} \kappa_j \kappa_j^* < \infty$
-    such that for any object~$B$
+        such that for any object~$B$
         and family of
         morphisms~$\left(f_j: A_j \to B\right)_{j\in I}$
         with~$\sum_{j \in I}f_j f_j^* < \infty$,
         there is a unique~$f\colon A \to B$
-        such that $f \kappa_j = f_j$ for all~$j \in I$, and $\| f \|^2 = \| \sum_j f_j f_j^* \|$.
+        such that $f \kappa_j = f_j$ for all~$j \in I$, and $\| f \|^2 = \| \sum_{j\in I} f_j f_j^* \|$.
 \item\label{biprodsum} There is a family of morphisms $\left(\kappa_j : A_j \to A\right)_{j\in I}$ such that $\kappa_i^*\kappa_j = \delta_{ij}$, and
 \beq
 \label{complete}
@@ -317,7 +324,18 @@ The assignment~$f \mapsto \kappa_j^*f$
              =  \sum_i \kappa_{j }^*\kappa_i f_i^*
             =  f_j^*$
             and so~$f \kappa_j = f_j$ as desired.
-\todo[inline]{Show equality of norms}
+Next we will show that~$\|f \|^2 = \|\sum_j f_j f_j^*\|$.
+    By definition of~$f^*$ and \cite[\S148\textsubscript{V}]{bas}
+         we have~
+ \begin{equation*}
+         \langle f^*, f^*\rangle
+         \ =\  \uwlim_{S\subseteq I\text{ finite}} \, \Bigl\langle \sum_{j \in S} \kappa_j f^*_j,
+                        \sum_{j \in S}\kappa_j f^*_j \Bigr\rangle
+         \ =\  \uwlim_{S\subseteq I\text{ finite}} \sum_{j \in S} f_j f_j^*
+        \ = \ \sum_j f_j f_j^*
+ \end{equation*}
+and so~$\| f \|^2 = \|f^*\|^2 = \|\langle f,f \rangle \|
+                = \|\sum_j f_j f_j^* \|$ as desired.
 Finally, to show uniqueness,
     assume~$f'\colon A \to B$ is any (other)
     morphism with~$f' \kappa_i = f_i$.
