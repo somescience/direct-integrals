@@ -216,12 +216,29 @@ This is functorial in $B$ in the obvious way.
 $\bigoplus_i \cat{C}(A_i,-)$ is complete, and therefore a Banach space.
 \end{lem}
 
-The proof is analogous to the standard proof showing that $\ell^2(I)$ is a Hilbert space. \tob{I haven't done this yet, so for now this statement is wishful thinking}
+The proof is analogous to the standard proof showing that $\ell^2(I)$ is a Hilbert space (and generalizes it).
 
 \begin{proof}
-Suppose that we are given a Cauchy sequence of families $( ( f_i^{(n)} )_{i\in I} )_{n\in\N}$.
+Suppose that we are given a Cauchy sequence of families $(f^{(n)})_{n\in\N} = ( ( f_i^{(n)} )_{i\in I} )_{n\in\N}$. For given $i$, projecting to $\cat{C}(A_i,B)$ is bounded, and therefore $( f_i^{(n)} )_{n\in\N}$ is Cauchy as well; let us denote the limit by $f_i : A_i \to B$. We will now show that $f \in \oplus_i \cat{C}(A_i,B)$ for $f := (f_i)_{i\in I}$. The Cauchy assumption implies that the sequence $(f^{(n)})_{n\in\N}$ is uniformly bounded by some constant $C$,
+\[
+	\left\| \sum_i (f_i^{(n)})^* f_i^{(n)} \right\|^{1/2} \leq C.
+\]
+Restricting to a finite partial sum over $S\subseteq I$ and taking $n\to\infty$ shows that
+\[
+	\left| \sum_{i\in S} f_i^* f_i \right\|^{1/2} \leq C
+\]
+as well. Since $S$ was arbitrary, we conclude that $\| f \| \leq C$.
 
-\todo{Complete this! Showing that $(f_i^{(n)})_{n\in\N}$ is Cauchy for each $i$ needs some form of Cauchy-Schwarz}
+
+The convergence $f_i \to f$ works similarly. By assumption, for every $\eps > 0$ we have $\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for almost all $n$ and $m$. In particular, we know that for any finite $S \subseteq I$,
+\[
+	\left\| \sum_{i\in S} (f_i^{(n)} - f_i^{(m)})^* (f_i^{(n)} - f_i^{(m)}) \right\|^{1/2} \leq \eps
+\]
+for almost all $n$ and $m$. Taking $m\to\infty$ gives
+\[
+	\left\| \sum_{i\in S} (f_i^{(n)} - f_i)^* (f_i^{(n)} - f_i) \right\|^{1/2} \leq \eps.
+\]
+Since $S$ was arbitrary, we conclude $\| f^{(n)} - f \| \leq \eps$ for almost all $n$.
 \end{proof}
 
 We now get to our main definition:
