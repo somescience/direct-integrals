@@ -35,12 +35,15 @@ urlcolor=myurlcolor}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Rplusext}{\overline{\mathbb{R}}_+} % extended nonnegative reals, as where measures take values
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\lin}[1]{\mathrm{lin}(#1)}
-\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\dom}[1]{\mathrm{dom}(#1)} 		% domain of a morphism
+\newcommand{\cod}[1]{\mathrm{cod}(#1)} 		% codomain of a morphism
 \newcommand{\supp}{\mathrm{supp}}
+\newcommand{\esssup}{\mathrm{ess\, sup}} 	% essential supremum
 
 % categories
 \newcommand{\cat}[1]{\mathsf{#1}}		% generic category
@@ -405,9 +408,41 @@ equipped with the blockwise representation of $\alg$, is indeed an \emph{$I$-ind
 \newcommand{\Obj}[1]{\mathrm{Obj}(#1)}
 \newcommand{\Mor}[1]{\mathrm{Mor}(#1)}
 
+\newcommand{\LMeas}{\cat{LocMeas}} 	% category of localizable measurable spaces
+\newcommand{\Null}{\mathcal{N}} 	% null sets
+
+We let $\LMeas$ be the category of localizable measurable spaces~\cite{nlab:localizable_measure}. So objects of $\LMeas$ are triples $(X,\Sigma,\Null)$, where $(X,\Sigma)$ is a $\sigma$-algebra and $\Null\subseteq\Sigma$ is a $\sigma$-ideal, whose elements are called \emph{null sets}, such that $\Sigma/\Null$ is complete as a Boolean algebra. Measurable sets with null complement are also called \emph{full sets}. We usually just write $X$ for a localizable measurable space, and indicate its $\sigma$-algebra and $\sigma$-ideal of measurable and null sets by $\Sigma_X$ and $\Null_X$, respectively. The morphisms of $\LMeas$ are the measurable maps $f : X \to Y$ modulo null sets, i.e.~$f,g : X\to Y$ represent the same morphism if $\{ x\in X \: | \: f(x) \neq g(x) \} \in \Null_X$.
+
+A \emph{measure} $\mu$ on localizable measurable space $X$ is a measure $\mu : \Sigma_X \to \Rplusext$ in the usual sense, but such that every null set has zero measure. It hence descends to a map $\Sigma_X / \Null_X \to \Rplusext$ satisfying the inclusion-exclusion relation.
+
+\tob{Is this map $\Sigma_X/\Null_X \to \Rplusext$ necessarily Scott continuous, so that it becomes a continuous valuation?}
+
 \begin{defn}
-A \emph{measurable category} $\cat{C}$ is a category internal to measurable spaces. A \emph{measured family of objects} indexed by a measure space $(X,\Sigma,\mu)$ is a measurable function $A : X\to\Obj{\cat{C}}$.
+A \emph{measurable category} $\cat{C}$ is a category internal to (potentially large) measurable spaces.
 \end{defn}
+
+Given $X\in\LMeas$, we define a category $L^\infty(X,\cat{C})$ as follows. Its objects are measurable functions $X \to \Obj{\cat{C}}$, which we denote as indexed families $(A_x)_{x\in X}$ varying measurably in $x$. The morphisms $(A_x) \to (B_x)$ are bounded measurable functions $f : X \to \Mor{\cat{C}}$ such that $\dom{f_x} = A_x$ and $\cod{f_x} = B_x$ for all $x$, again modulo almost everywhere equality.
+
+\begin{prop}
+$L^\infty(X,\cat{C})$ is a W$^*$-category as well.
+\end{prop}
+
+So the categories $L^\infty(X,\Hilb)$ are our version of Yetter's \emph{categories of measurable fields of Hilbert spaces}.
+
+\todo[inline]{Can we make the comparison more precise?}
+
+\begin{proof}
+It is clear that $L^\infty(X,\cat{C})$ inherits the antilinear involution from $\cat{C}$. The norm of a morphism is defined as
+\[
+	\| (f_x) \| := \esssup_x \| f_x \|,
+\]
+which is clearly well-defined upon changing the representative. To show that each hom-set is also complete as a normed space, let $( (f_x)^{(n)})_{n\in\N}$ be a Cauchy sequence of (representatives of) morphisms. We show that the collection of all $x$ for which $(f_x^{(n)})_{n\in\N}$ is Cauchy is full. Since countable intersections of full sets are full, It is enough to prove that for every $\eps > 0$, the set of $x$ for which $\| f_x^{(n)} - f_x^{(m)} \| < \eps$ holds eventually is full. But by assumption, we know that $\esssup_x \| f_x^{(n)} - f_x^{(m)} \| < \eps$ eventually, which is enough. Therefore we can define a candidate representative of a limit morphism as $(f_x)$, where $f_x$ is the above limit on those $x$ where the family is Cauchy, and e.g.~zero outside of that. It is straightforward to show that this is the limit.
+
+The Banach algebra axiom and the C$^*$-identity follow directly from those of $\cat{C}$.
+
+\todo[inline]{How about preduals for the hom-sets?}
+\end{proof}
+
 
 For $(A_x)_{x\in X}$ a measured family of objects in $\cat{C}$, we now consider the functor
 \[
@@ -420,8 +455,6 @@ given by associating to every object $B$ the set
 which is functorial in $B$ in the obvious way.
 
 \todo[inline]{Is this the ``right'' definition? What is the relation to~\cite{measureablecats}?}
-
-\todo[inline]{Tob: I now think that the ``right'' definition may be in terms of \emph{semifinite} measures, by analogy with normal semifinite traces. My idea is that measurable families of objects are in some sense the objects of some ``$L^\infty(X,\cat{C})$'', which could perhaps be a W$^*$-category itself, along the lines of what Yetter~\cite{measureablecats} has proposed. This analogy with W$^*$-algebras makes me think that semifinite measures may be what we want}
 
 \begin{defn}
 A W$^*$-category \emph{has direct integrals} if it has direct integrals for $\sigma$-finite measure spaces and arbitrary direct sums.
