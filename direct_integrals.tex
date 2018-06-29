@@ -54,6 +54,8 @@ urlcolor=myurlcolor}
 \newcommand{\Rep}[1]{\mathsf{Rep}(#1)}		% cat normal Hilbert space reps of a C$^*$-algebra
 \newcommand{\NRep}[1]{\mathsf{nRep}(#1)}	% cat of normal Hilbert space reps of a W$^*$-algebra
 \newcommand{\id}[1]{1_{#1}}			% identity morphism
+\newcommand{\Kay}{\mathcal{K}} % I use a convention that the name of a letter spelt phonetically signifies its mathcal version. But semantically, this is a compact class in a measure space.
+\newcommand{\powerset}{\mathcal{P}}
 
 % Theorem Environments
 \swapnumbers
@@ -411,11 +413,21 @@ equipped with the blockwise representation of $\alg$, is indeed an \emph{$I$-ind
 \newcommand{\LMeas}{\cat{LocMeas}} 	% category of localizable measurable spaces
 \newcommand{\Null}{\mathcal{N}} 	% null sets
 
-We let $\LMeas$ be the category of localizable measurable spaces~\cite{nlab:localizable_measure}. So objects of $\LMeas$ are triples $(X,\Sigma,\Null)$, where $(X,\Sigma)$ is a $\sigma$-algebra and $\Null\subseteq\Sigma$ is a $\sigma$-ideal, whose elements are called \emph{null sets}, such that $\Sigma/\Null$ is complete as a Boolean algebra. Measurable sets with null complement are also called \emph{full sets}. We usually just write $X$ for a localizable measurable space, and indicate its $\sigma$-algebra and $\sigma$-ideal of measurable and null sets by $\Sigma_X$ and $\Null_X$, respectively. The morphisms of $\LMeas$ are the measurable maps $f : X \to Y$ modulo null sets, i.e.~$f,g : X\to Y$ represent the same morphism if $\{ x\in X \: | \: f(x) \neq g(x) \} \in \Null_X$.
+We let $\LMeas$ be the category of localizable measurable spaces~\cite{nlab:localizable_measure}. So objects of $\LMeas$ are triples $(X,\Sigma,\Null)$, where $\Sigma$ is a $\sigma$-algebra on $X$, and $\Null\subseteq\Sigma$ is a $\sigma$-ideal, whose elements are called \emph{null sets}, such that $\Sigma/\Null$ is complete as a Boolean algebra, and there exists a semifinite \cite[211F]{fremlin2} measure $\mu : \Sigma \rightarrow [0,\infty]$ such that $\Null = \mu^{-1}(0)$. These are what we get if we take a localizable measure space $(X,\Sigma,\mu)$  \cite[211G]{fremlin2} and only keep the information about which sets are null. Localizable measure spaces were introduced by Segal \cite{segal} as a characterization of the measure spaces such that $L^\infty(X)$, the C$^*$ of essentially bounded measurable functions modulo nullsets, is a W$^*$-algebra. 
 
-A \emph{measure} $\mu$ on localizable measurable space $X$ is a measure $\mu : \Sigma_X \to \Rplusext$ in the usual sense, but such that every null set has zero measure. It hence descends to a map $\Sigma_X / \Null_X \to \Rplusext$ satisfying the inclusion-exclusion relation.
+Measurable sets with null complement are also called \emph{full sets}. We usually just write $X$ for a localizable measurable space, and indicate its $\sigma$-algebra and $\sigma$-ideal of measurable and null sets by $\Sigma_X$ and $\Null_X$, respectively. The morphisms of $\LMeas$ are equivalence classes of measurable maps $f : X \to Y$ such that for all $N \in \Null_Y$, $f^{-1}(N) \in \Null_X$\todo[inline]{We need to be using compact strictly localizable spaces to make this definition sufficient to define a normal map between W*-algebras.}, under the following equivalence relation: $f \sim g$ iff for all $T \in \Sigma_Y$ $f^{-1}(T) \triangle g^{-1}(T) \in \Null_X$. If $f$ and $g$ agree almost everywhere, then $f \sim g$, and the two notions are equivalent if $(Y,\Sigma_Y)$ is countably separated \cite[343F]{fremlin3}, but not in general \cite[343I]{fremlin3}. 
 
-\tob{Is this map $\Sigma_X/\Null_X \to \Rplusext$ necessarily Scott continuous, so that it becomes a continuous valuation?}
+A \emph{measure} $\mu$ on localizable measurable space $X$ is a measure $\mu : \Sigma_X \to \Rplusext$ in the usual sense, but such that every null set has zero measure. It therefore descends to a countably additive map $\Sigma_X / \Null_X \to \Rplusext$, such that every non-zero element of $\Sigma_X / \Null_X$ has non-zero measure. As $\Sigma_X / \Null_X$ is a complete Boolean algebra, such a map is necessarily completely additive, not just countably additive \cite[321E]{fremlin2}.
+
+Unfortunately, there exist localizable measurable spaces $X$, $Y$ such that $L^\infty(X) \cong L^\infty(Y)$ but there is no measurable map from $X$ to $Y$. To get out of this difficulty, we restrict ourselves to localizable measurable spaces arising from complete strictly localizable compact measure spaces. 
+
+To define these notions, we first define the finite intersection property, and what a compact class is. Let $X$ be a set, and $\Kay \subseteq \powerset(X)$ be a family of sets. We say it has the \emph{finite intersection property} if for each finite subfamily $(K_i)_{i \in I}$, $K_i \in \Kay$, we have $\bigcap_{i \in I} K_i \neq 0$. We say that $\Kay$ is a \emph{compact class} if for any subfamily $\Kay' \subseteq \Kay$ having the finite intersection property, $\bigcap \Kay' \neq \emptyset$. By taking the complement of every set in the open cover definition of a compact space, the reader may recognize that the closed sets of any compact topological space form a compact class. Slightly less trivially, the compact subsets of any Hausdorff space form a compact class. 
+
+A measure space $(X,\Sigma,\mu)$ is \emph{compact} \cite[342A (c)]{fremlin3} if there exists a compact class $\Kay$ such that for all $S \in \Sigma$
+\[
+\mu(S) = \sup \{ \mu(K) \mid K \in \Kay \cap \Sigma \text{ and } K \subseteq S \}.
+\]
+This condition is known as being \emph{inner regular with respect to} $\Kay$. Therefore any Radon measure on a Hausdorff space $X$ is compact, because we can take $\Kay$ to be the set of (topologically) compact subsets of $X$. So familiar examples, such as Lebesgue measure on $\R^n$, the Haar measure on a locally compact group, or any $\sigma$-finite measure on a standard Borel space, are compact.
 
 \begin{defn}
 A \emph{measurable category} $\cat{C}$ is a category internal to (potentially large) measurable spaces.
