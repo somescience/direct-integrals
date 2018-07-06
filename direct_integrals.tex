@@ -94,7 +94,7 @@ urlcolor=myurlcolor}
 %%% draft stuff
 %\usepackage[draft]{showkeys}
 \usepackage{todonotes}
-\newcommand{\tob}[1]{\todo[color=blue!40,inline]{#1}}
+\newcommand{\tob}[1]{\todo[color=blue!40,inline]{\textbf{T}: #1}}
 
 
 %-------------------------------------------------------------------
@@ -405,35 +405,57 @@ equipped with the blockwise representation of $\alg$, is indeed an \emph{$I$-ind
 \todo[inline]{do this}
 \end{proof}
 
-\section{Direct integrals}
+\section{The universal property of direct integrals}
 
 \newcommand{\Obj}[1]{\mathrm{Obj}(#1)}
 \newcommand{\Mor}[1]{\mathrm{Mor}(#1)}
 
-\newcommand{\LMeas}{\cat{LocMeas}} 	% category of localizable measurable spaces
+\newcommand{\LMeas}{\cat{LocMeas}} 	% category of localizable measure spaces
 \newcommand{\Null}{\mathcal{N}} 	% null sets
 
-We let $\LMeas$ be the category of localizable measurable spaces~\cite{nlab:localizable_measure}. So objects of $\LMeas$ are triples $(X,\Sigma,\Null)$, where $\Sigma$ is a $\sigma$-algebra on $X$, and $\Null\subseteq\Sigma$ is a $\sigma$-ideal, whose elements are called \emph{null sets}, such that $\Sigma/\Null$ is complete as a Boolean algebra, and there exists a semifinite \cite[211F]{fremlin2} measure $\mu : \Sigma \rightarrow [0,\infty]$ such that $\Null = \mu^{-1}(0)$. These are what we get if we take a localizable measure space $(X,\Sigma,\mu)$  \cite[211G]{fremlin2} and only keep the information about which sets are null. Localizable measure spaces were introduced by Segal \cite{segal} as a characterization of the measure spaces such that $L^\infty(X)$, the C$^*$ of essentially bounded measurable functions modulo nullsets, is a W$^*$-algebra. 
+\tob{The precise definitions are not set in stone, and should be adjusted such that the measure theory works out. So far it's more of a sketch}
 
-Measurable sets with null complement are also called \emph{full sets}. We usually just write $X$ for a localizable measurable space, and indicate its $\sigma$-algebra and $\sigma$-ideal of measurable and null sets by $\Sigma_X$ and $\Null_X$, respectively. The morphisms of $\LMeas$ are equivalence classes of measurable maps $f : X \to Y$ such that for all $N \in \Null_Y$, $f^{-1}(N) \in \Null_X$\todo[inline]{We need to be using compact strictly localizable spaces to make this definition sufficient to define a normal map between W*-algebras.}, under the following equivalence relation: $f \sim g$ iff for all $T \in \Sigma_Y$ $f^{-1}(T) \triangle g^{-1}(T) \in \Null_X$. If $f$ and $g$ agree almost everywhere, then $f \sim g$, and the two notions are equivalent if $(Y,\Sigma_Y)$ is countably separated \cite[343F]{fremlin3}, but not in general \cite[343I]{fremlin3}. 
+\subsection{Preliminaries}
 
-A \emph{measure} $\mu$ on localizable measurable space $X$ is a measure $\mu : \Sigma_X \to \Rplusext$ in the usual sense, but such that every null set has zero measure. It therefore descends to a countably additive map $\Sigma_X / \Null_X \to \Rplusext$, such that every non-zero element of $\Sigma_X / \Null_X$ has non-zero measure. As $\Sigma_X / \Null_X$ is a complete Boolean algebra, such a map is necessarily completely additive, not just countably additive \cite[321E]{fremlin2}.
+We begin with some measure-theoretic preliminaries, following Fremlin~\cite{fremlin2,fremlin3}.
 
-Unfortunately, there exist localizable measurable spaces $X$, $Y$ such that $L^\infty(X) \cong L^\infty(Y)$ but there is no measurable map from $X$ to $Y$. To get out of this difficulty, we restrict ourselves to localizable measurable spaces arising from complete strictly localizable compact measure spaces. 
+Given a measure space $(X,\Sigma,\mu)$, the \emph{null sets} are the sets of zero measure, and the \emph{full sets} are their complements. The measure space is \emph{localizable} if $\Sigma$ modulo the null sets is complete as a Boolean algebra, which means that every collection of measurable sets has an \emph{essential supremum}. Localizable measure spaces were introduced by Segal \cite{segal} as a characterization of the measure spaces such that $L^\infty(X)$, the C$^*$-algebra of essentially bounded measurable functions modulo null sets, is a W$^*$-algebra. 
 
-To define these notions, we first define the finite intersection property, and what a compact class is. Let $X$ be a set, and $\Kay \subseteq \powerset(X)$ be a family of sets. We say it has the \emph{finite intersection property} if for each finite subfamily $(K_i)_{i \in I}$, $K_i \in \Kay$, we have $\bigcap_{i \in I} K_i \neq 0$. We say that $\Kay$ is a \emph{compact class} if for any subfamily $\Kay' \subseteq \Kay$ having the finite intersection property, $\bigcap \Kay' \neq \emptyset$. By taking the complement of every set in the open cover definition of a compact space, the reader may recognize that the closed sets of any compact topological space form a compact class. Slightly less trivially, the compact subsets of any Hausdorff space form a compact class. 
+With $\Null$ denoting the $\sigma$-ideal of null sets, the measure descends to a countably additive map $\Sigma / \Null \to \Rplusext$, such that every non-zero element of $\Sigma / \Null$ has non-zero measure. As $\Sigma / \Null$ is a complete Boolean algebra, such a map is necessarily completely additive, not just countably additive \cite[321E]{fremlin2}.
 
-A measure space $(X,\Sigma,\mu)$ is \emph{compact} \cite[342A (c)]{fremlin3} if there exists a compact class $\Kay$ such that for all $S \in \Sigma$
+\tob{So we can e.g. take the measurable space $(S,2^S)$ for some uncountable $S$, and equip it with the measure $\mu$ which vanishes on any countable set, and is $\infty$ on all uncountable sets. This is a localizable measure space, right? I guess that it's not compact though, and clearly not strictly localizable. Is this a good (counter-)example for us?}
+
+Unfortunately, there exist localizable measure spaces $X$, $Y$ such that $L^\infty(X) \cong L^\infty(Y)$ but there is no measurable map from $X$ to $Y$ \todo{example?}. To get out of this difficulty, we restrict ourselves to localizable measure spaces arising from \emph{complete strictly localizable compact} measure spaces. 
+
+To define these notions, we first define the finite intersection property, and what a compact class is. Let $X$ be a set, and $\Kay \subseteq \powerset(X)$ be a family of sets. We say it has the \emph{finite intersection property} if for each finite subfamily $(K_i)_{i \in I}$, $K_i \in \Kay$, we have $\bigcap_{i \in I} K_i \neq 0$. We say that $\Kay$ is a \emph{compact class} if for any subfamily $\Kay' \subseteq \Kay$ having the finite intersection property, $\bigcap \Kay' \neq \emptyset$. For example, the closed sets of any compact topological space form a compact class. Slightly less trivially, the compact subsets of any Hausdorff space form a compact class. 
+
+A measure space $(X,\Sigma,\mu)$ is \emph{compact} \cite[342A(c)]{fremlin3} if there exists a compact class $\Kay$ such that for all $S \in \Sigma$
 \[
 \mu(S) = \sup \{ \mu(K) \mid K \in \Kay \cap \Sigma \text{ and } K \subseteq S \}.
 \]
 This condition is known as being \emph{inner regular with respect to} $\Kay$. Therefore any Radon measure on a Hausdorff space $X$ is compact, because we can take $\Kay$ to be the set of (topologically) compact subsets of $X$. So familiar examples, such as Lebesgue measure on $\R^n$, the Haar measure on a locally compact group, or any $\sigma$-finite measure on a standard Borel space, are compact.
 
-\begin{defn}
-A \emph{measurable category} $\cat{C}$ is a category internal to (potentially large) measurable spaces.
-\end{defn}
+A measure space $(X,\Sigma,\mu)$ is \emph{strictly localizable} if it can be written as the (typically infinite) disjoint union of finite localizable measure spaces~\cite[211E]{fremlin2}.
 
-Given $X\in\LMeas$, we define a category $L^\infty(X,\cat{C})$ as follows. Its objects are measurable functions $X \to \Obj{\cat{C}}$, which we denote as indexed families $(A_x)_{x\in X}$ varying measurably in $x$. The morphisms $(A_x) \to (B_x)$ are bounded measurable functions $f : X \to \Mor{\cat{C}}$ such that $\dom{f_x} = A_x$ and $\cod{f_x} = B_x$ for all $x$, again modulo almost everywhere equality.
+We write $\LMeas$ for the category where:
+\begin{enumerate}
+\item Objects are measure spaces which are complete, strictly localizable and compact;
+\item Morphisms are equivalence classes of measurable maps $f : X \to Y$ with $\mu_Y \ll f_* \mu_X$ \todo{or something like truly continuous?}, where for measurable $f,g : X \to Y$, we put $f \sim g$ iff for all $T \in \Sigma_Y$, we have $f^{-1}(T) \triangle g^{-1}(T) \in \Null_X$. \todo{Do we also want some compatibility with the compact classes?}
+\end{enumerate}
+
+If $f$ and $g$ agree almost everywhere, then $f \sim g$. The converse also holds if $(Y,\Sigma_Y)$ is countably separated \cite[343F]{fremlin3}, but not in general \cite[343I]{fremlin3}. 
+
+
+\subsection{Measurable families of objects}
+
+Now let $\cat{C}$ be a W$^*$-category, and $X \in \LMeas$. Then we define a category $L^\infty(X,\cat{C})$ as follows:
+
+\begin{enumerate}
+\item Objects are maps $A : X \to \cat{C}, \: x\mapsto A_x$, which are measurable in the sense that there is a measurable partition of $X$ such that $A$ is constant on each part;
+\item Morphisms $f : A\to B$ are equivalence classes of bounded families $(f_x : A_x\to B_x)_{x\in X}$, which depend measurably \todo{work out what exactly this should mean such that composition makes sense} on $x$, and where $f \sim g$ if upon restriction to any measurable set on which both $A$ and $B$ are constant, we have $f^{-1}(T) \triangle g^{-1}(T) \in \Null_X$ for every measurable $T \subseteq \cat{C}(A,B)$.
+\end{enumerate}
+
+In particular, this means that two objects $A$ and $B$ which differ only on a null set are isomorphic.
 
 \begin{prop}
 $L^\infty(X,\cat{C})$ is a W$^*$-category as well.
@@ -448,23 +470,30 @@ It is clear that $L^\infty(X,\cat{C})$ inherits the antilinear involution from $
 \[
 	\| (f_x) \| := \esssup_x \| f_x \|,
 \]
-which is clearly well-defined upon changing the representative. To show that each hom-set is also complete as a normed space, let $( (f_x)^{(n)})_{n\in\N}$ be a Cauchy sequence of (representatives of) morphisms. We show that the collection of all $x$ for which $(f_x^{(n)})_{n\in\N}$ is Cauchy is full. Since countable intersections of full sets are full, It is enough to prove that for every $\eps > 0$, the set of $x$ for which $\| f_x^{(n)} - f_x^{(m)} \| < \eps$ holds eventually is full. But by assumption, we know that $\esssup_x \| f_x^{(n)} - f_x^{(m)} \| < \eps$ eventually, which is enough. Therefore we can define a candidate representative of a limit morphism as $(f_x)$, where $f_x$ is the above limit on those $x$ where the family is Cauchy, and e.g.~zero outside of that. It is straightforward to show that this is the limit.
+which is clearly well-defined upon changing the representative. To show that each hom-set is also complete as a normed space, let $( (f_x)^{(n)})_{n\in\N}$ be a Cauchy sequence of (representatives of) morphisms. We show that the collection of all $x$ for which $(f_x^{(n)})_{n\in\N}$ is Cauchy is a full set. Since countable intersections of full sets are full, It is enough to prove that for every $\eps > 0$, the set of $x$ for which $\| f_x^{(n)} - f_x^{(m)} \| < \eps$ holds eventually is a full set. But by assumption, we know that $\esssup_x \| f_x^{(n)} - f_x^{(m)} \| < \eps$ eventually, which is enough. Therefore we can define a candidate representative of a limit morphism as $(f_x)$, where $f_x$ is the above limit on those $x$ where the family is Cauchy, and e.g.~zero outside of that. It is straightforward to show that this is the limit.
 
-The Banach algebra axiom and the C$^*$-identity follow directly from those of $\cat{C}$.
+The submultiplicativity of the norm and the C$^*$-identity follow directly from those of $\cat{C}$.
 
-\todo[inline]{How about preduals for the hom-sets?}
+\todo[inline]{Try to construct preduals for the hom-sets in terms of spaces like $L^1(X,\cat{C}(A,B)_*)$?}
 \end{proof}
 
 
 For $(A_x)_{x\in X}$ a measured family of objects in $\cat{C}$, we now consider the functor
 \[
-	\int_X \cat{C}(A_x,-) \: : \: \cat{C}\to\Set
+	\int_X \cat{C}(A_x,-) \, d\mu(x) \: : \: \cat{C}\to\Set
 \]
 given by associating to every object $B$ the set
 \[
-	\int_X \cat{C}(A_x , B) := \left\{ f : X\to\Mor{\cat{C}} \textrm{ measurable} \Biggm\vert f_x : A_x\to B,\: \int_X f_x f_x^* \,dx < \infty \right\},
+	\int_X \cat{C}(A_x , B) \, d\mu(x) := \left\{ f : X\to\Mor{\cat{C}} \textrm{ measurable} \Biggm\vert f_x : A_x\to B,\: \int_X f_x f_x^* \,dx < \infty \right\},
 \]
 which is functorial in $B$ in the obvious way.
+
+\begin{defn}
+A \emph{direct integral} of the family $(A_x)_{x\in X}$ is now an object $\int_X A_x \, d\mu(x)$ together with a natural bijection
+\[
+	\cat{C}\left( \int_X A_x \, d\mu(x), -\right) \cong \int_X \cat{C}(A_x,-) \, d\mu(x).
+\]
+\end{defn}
 
 \todo[inline]{Is this the ``right'' definition? What is the relation to~\cite{measureablecats}?}
 
@@ -483,6 +512,15 @@ If countable direct sums and direct integrals for finite measure spaces and exis
 If everything works out, this is due to a nice kind of compositionality of direct integrals (essentially Fubini's theorem).
 
 \todo[inline]{Prove Fubini's theorem for direct integrals from the universal property?}
+
+\begin{thm}
+Suppose that $\cat{C}$ has direct integrals. Then every $\int_X A_x \, d\mu(x)$ carries a normal representation of $L^\infty(X)$, and we have a functor
+\[
+	L^\infty(X,\cat{C}) \to \NRep{L^\infty(X),\cat{C}} , \qquad (A_x) \mapsto \int_X A_x \, d\mu(x),
+\]
+and this is an equivalence of W$^*$-categories.
+\end{thm}
+
 
 \bibliographystyle{plain}
 \bibliography{direct_integrals}
