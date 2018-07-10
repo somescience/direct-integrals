@@ -419,13 +419,39 @@ equipped with the blockwise representation of $\alg$, is indeed an \emph{$I$-ind
 
 We begin with some measure-theoretic preliminaries, following Fremlin~\cite{fremlin2,fremlin3}.
 
-Given a measure space $(X,\Sigma,\mu)$, the \emph{null sets} are the sets of zero measure, and the \emph{full sets} are their complements. The measure space is \emph{localizable} if $\Sigma$ modulo the null sets is complete as a Boolean algebra, which means that every collection of measurable sets has an \emph{essential supremum}. Localizable measure spaces were introduced by Segal \cite{segal} as a characterization of the measure spaces such that $L^\infty(X)$, the C$^*$-algebra of essentially bounded measurable functions modulo null sets, is a W$^*$-algebra. 
+Given a measure space $(X,\Sigma,\mu)$, the \emph{null sets} are the sets of zero measure, forming a $\sigma$-ideal in $\Sigma$, and the \emph{full sets} are their complements. We say a set $S \in \Sigma$ has \emph{finite measure} if $\mu(S) < \infty$. If $X$ itself, and therefore all sets in $\Sigma$, have finite measure, we say that $X$ is \emph{finite}. A measure space is \emph{semi-finite} if for all $S \in \Sigma$ such that $\mu(S) = \infty$, there exists a set $T \in \Sigma$ such that $T \subseteq S$ and $0 < \mu(T) < \infty$. Applying Zorn's lemma, we see that a measurable subset of a semi-finite measure space has infinite measure \emph{if and only if} it contains subsets of arbitrarily large finite measure. 
 
-With $\Null$ denoting the $\sigma$-ideal of null sets, the measure descends to a countably additive map $\Sigma / \Null \to \Rplusext$, such that every non-zero element of $\Sigma / \Null$ has non-zero measure. As $\Sigma / \Null$ is a complete Boolean algebra, such a map is necessarily completely additive, not just countably additive \cite[321E]{fremlin2}.
+A measure space is \emph{localizable} $\mu$ is semi-finite and $\Sigma$ modulo the null sets is complete as a Boolean algebra, which means that every collection of measurable sets has an \emph{essential supremum}. Localizable measure spaces were introduced by Segal \cite{segal} as a characterization of the measure spaces such that $L^\infty(X)$, the C$^*$-algebra of essentially bounded measurable functions modulo null sets, is a W$^*$-algebra. 
 
-\tob{So we can e.g. take the measurable space $(S,2^S)$ for some uncountable $S$, and equip it with the measure $\mu$ which vanishes on any countable set, and is $\infty$ on all uncountable sets. This is a localizable measure space, right? I guess that it's not compact though, and clearly not strictly localizable. Is this a good (counter-)example for us?}
+With $\Null$ denoting the $\sigma$-ideal of null sets, the measure descends to a countably additive map $\Sigma / \Null \to \Rplusext$, such that every non-zero element of $\Sigma / \Null$ has non-zero measure. As $\Sigma / \Null$ is a complete Boolean algebra, such a map is necessarily completely additive, not just countably additive \cite[321E]{fremlin2}. The pair $(\Sigma/\Null, \mu)$ is called the \emph{measure algebra} of $X$. 
 
-Unfortunately, there exist localizable measure spaces $X$, $Y$ such that $L^\infty(X) \cong L^\infty(Y)$ but there is no measurable map from $X$ to $Y$ \todo{example?}. To get out of this difficulty, we restrict ourselves to localizable measure spaces arising from \emph{complete strictly localizable compact} measure spaces. 
+We can shed some light on the notion of localizability with some simple counter-examples based on the same underlying $\sigma$-algebra. Let $X$ be any uncountable set, and take $\Sigma$ to be the sets that are either countable or have countable complement (these sets are called \emph{cocountable}). This is easily seen to be a $\sigma$-algebra. We make $(X,\Sigma)$ into a measure space by three different choices of measure, each of which illustrates different features. We define the counting measure $\kappa : \Sigma \rightarrow [0,\infty]$ by
+\begin{equation}
+\label{CountingMeasDefnEqn}
+\kappa(S) = \begin{cases} |S| & \text{if } S \text{ is finite} \\
+                          \infty & \text{if } S \text{ is infinite} \end{cases}.
+\end{equation}
+This is a countably additive measure, and its only null set is $\emptyset$. The space $(X,\Sigma,\kappa)$ is semi-finite, but not localizable, because $\Sigma$ is not a complete Boolean algebra (otherwise it would contain all subsets of $X$). 
+
+We define the measure $\mu_c : \Sigma \rightarrow [0,1]$ by
+\begin{equation}
+\label{CountableCocountableMeasDefnEqn}
+\mu_c(S) = \begin{cases} 0 & \text{if } S \text{ is countable} \\
+                         1 & \text{if } S \text{ is cocountable} \end{cases}.
+\end{equation}
+Then $(X,\Sigma,\mu_c)$ is a probability space, and therefore localizable. In fact, we can see that $\Sigma/ \Null$ is a 2-element Boolean algebra, equipped with its unique probability measure. 
+
+We define the measure $\mu_\infty : \Sigma \rightarrow [0,\infty]$ by
+\[
+\mu_\infty(S) = \begin{cases} 0 & \text{if } S \text{ is countable} \\
+                             \infty & \text{if } S \text{ is cocountable} \end{cases}.
+\]
+
+Then $(X,\Sigma,\mu_\infty)$ is a measure space such that $\Sigma / \Null$ is a complete Boolean algebra (the 2-element one, as before), but $(X,\Sigma,\mu_\infty)$ is not localizable, because it is not semi-finite. 
+
+Unfortunately, there exist localizable measure spaces $X$, $Y$ such that $L^\infty(X) \cong L^\infty(Y)$ but there is no measurable map from $X$ to $Y$ taking nullsets to nullsets under preimage. For example, if we consider $(1,\powerset(1),\nu)$, where $\nu$ is the unique probability measure, and the space $(X,\Sigma,\mu_c)$ from \eqref{CountableCocountableMeasDefnEqn}. A map $f: 1 \rightarrow X$ that preserves nullsets under preimage cannot exist, because the preimage of every singleton is required to be the empty set. But $1$ and $X$ both have $2$ as their measure algebra. This is enough to show that $L^\infty(1) \cong L^\infty(X)$, but it can also be seen directly by showing that for each measurable function $f : X \rightarrow \C$ is constant on some cocountable set, so $L^\infty(X) \cong \C \cong L^\infty(1)$. 
+
+To get out of this difficulty, we restrict ourselves to \emph{complete strictly localizable compact} measure spaces. Doing so still allows us to use all commutative W$^*$-algebras, which would not be the case if we restricted to $\sigma$-finite measures on standard Borel spaces, for example.
 
 To define these notions, we first define the finite intersection property, and what a compact class is. Let $X$ be a set, and $\Kay \subseteq \powerset(X)$ be a family of sets. We say it has the \emph{finite intersection property} if for each finite subfamily $(K_i)_{i \in I}$, $K_i \in \Kay$, we have $\bigcap_{i \in I} K_i \neq 0$. We say that $\Kay$ is a \emph{compact class} if for any subfamily $\Kay' \subseteq \Kay$ having the finite intersection property, $\bigcap \Kay' \neq \emptyset$. For example, the closed sets of any compact topological space form a compact class. Slightly less trivially, the compact subsets of any Hausdorff space form a compact class. 
 
@@ -435,12 +461,14 @@ A measure space $(X,\Sigma,\mu)$ is \emph{compact} \cite[342A(c)]{fremlin3} if t
 \]
 This condition is known as being \emph{inner regular with respect to} $\Kay$. Therefore any Radon measure on a Hausdorff space $X$ is compact, because we can take $\Kay$ to be the set of (topologically) compact subsets of $X$. So familiar examples, such as Lebesgue measure on $\R^n$, the Haar measure on a locally compact group, or any $\sigma$-finite measure on a standard Borel space, are compact.
 
-A measure space $(X,\Sigma,\mu)$ is \emph{strictly localizable} if it can be written as the (typically infinite) disjoint union of finite localizable measure spaces~\cite[211E]{fremlin2}.
+We can prove directly that the space $(X,\Sigma,\mu_c)$ from \eqref{CountableCocountableMeasDefnEqn} is not compact -- if $\Kay$ were a compact class with respect to which $\mu_c$ were inner regular, we could define, for finite set $S \subseteq X$, $K_S \in \Kay$ such that $K_S \subseteq X \setminus S$ and $\mu_c(K_S) = 1$, so $K_S$ is cocountable. By definition $\bigcap_{S \Subset X} K_s \subseteq \bigcap X \setminus S = \emptyset$, but the family $(K_S)$ has the finite intersection property, so has nonempty intersection, a contradiction.
+
+A measure space $(X,\Sigma,\mu)$ is \emph{strictly localizable} if it can be written as the (typically infinite) coproduct of finite measure spaces~\cite[211E]{fremlin2}. It does not suffice for $(X,\Sigma,\mu)$ to be merely the union of finite measure spaces, or $(X,\Sigma,\kappa)$ from \eqref{CountingMeasDefnEqn} would be strictly localizable, when it isn't even localizable. 
 
 We write $\LMeas$ for the category where:
 \begin{enumerate}
 \item Objects are measure spaces which are complete, strictly localizable and compact;
-\item Morphisms are equivalence classes of measurable maps $f : X \to Y$ with $\mu_Y \ll f_* \mu_X$ \todo{or something like truly continuous?}, where for measurable $f,g : X \to Y$, we put $f \sim g$ iff for all $T \in \Sigma_Y$, we have $f^{-1}(T) \triangle g^{-1}(T) \in \Null_X$. \todo{Do we also want some compatibility with the compact classes?}
+\item Morphisms are equivalence classes of measurable maps $f : X \to Y$ with $\mu_Y \ll f_* \mu_X$ \todo{add reference to ``missing chapter'', it is true, but not trivial, that such a map defines a normal map of W$^*$-algebras.}, where for measurable $f,g : X \to Y$, we put $f \sim g$ iff for all $T \in \Sigma_Y$, we have $f^{-1}(T) \triangle g^{-1}(T) \in \Null_X$.
 \end{enumerate}
 
 If $f$ and $g$ agree almost everywhere, then $f \sim g$. The converse also holds if $(Y,\Sigma_Y)$ is countably separated \cite[343F]{fremlin3}, but not in general \cite[343I]{fremlin3}. 
