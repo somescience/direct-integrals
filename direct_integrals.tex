@@ -128,7 +128,7 @@ urlcolor=myurlcolor}
 
 \subjclass[2010]{Primary: ; Secondary: }
 
-\thanks{\textit{Acknowledgements.} Part of this work was conducted while the first author was at the Max Planck Institute for Mathematics in the Sciences in Leipzig, Germany.}
+\thanks{\textit{Acknowledgements.} Part of this work was conducted while the first author was at the Max Planck Institute for Mathematics in the Sciences in Leipzig, Germany. We thank Andr\'e{} Henriques for useful discussions.}
 
 \begin{abstract}
 Using enrichment in Banach spaces, we observe that one can formulate universal properties characterizing universal objects in C$^*$-categories in such a way that they guarantee uniqueness up to unique unitaries. We then formulate such a universal property for infinite direct sums in W$^*$-categories, and prove that this indeed characterizes the standard infinite direct sums in the W$^*$-category of normal representations of a W$^*$-algebra. We do the same for direct integrals, in which case we need to work with measurable W$^*$-categories.
@@ -486,7 +486,10 @@ If $f$ and $g$ agree almost everywhere, then $f \sim g$. The converse also holds
 Now let $X \in \LMeas$, and let $\cat{C}$ be a W$^*$-category. We say that $\cat{C}$ is a \emph{measurable W$^*$-category} if both objects and morphisms form (potentially large) measurable spaces, and such that all structure maps, including the involution, are measurable; we also require that the restriction to each hom-set $\cat{C}(A,B)$ recovers the Borel (or Baire?) $\sigma$-algebra.
 
 \begin{ex}
-$\NRep{\cat{N}}$ has a canonical measurable structure of this kind if we declare a collection of objects $\mathcal{S}$ to be measurable if for every Hilbert space $\H$, the set of all $\pi : \cat{N} \to \B{\H}$ which are in is $\mathcal{S}$ is measurable, in the sense of the smallest $\sigma$-algebra which makes the evaluation maps $\pi \mapsto \langle \xi,\pi(a) \xi\rangle$ for $\xi\in\H$ and $a\in\cat{N}$ measurable. As a degenerate special case, for $\cat{C} = \Hilb$ we obtain the discrete $\sigma$-algebra on the objects.
+\label{nrep_measurable}
+$\NRep{\cat{N}}$ has a canonical measurable structure of this kind, which we describe in the following. First, a collection of representations $\mathcal{S}$ on a fixed Hilbert space $\H$ is measurable if it is in the smallest $\sigma$-algebra which makes the evaluation maps $\pi \mapsto \langle \xi,\pi(a) \xi\rangle$ for $\xi\in\H$ and $a\in\cat{N}$ measurable. Furthermore, we equip $\Obj{\Hilb}$ with the countable-cocountable $\sigma$-algebra. On $\Obj{\NRep{\cat{N}}}$, we hence put the $\sigma$-algebra consisting of countable or cocountable unions of measurable subsets of $\{ \pi : \cat{N} \to \B{\H} \}$ for varying $\H$.
+
+As a degenerate special case, for $\cat{C} = \Hilb$ we obtain the discrete $\sigma$-algebra on the objects.
 
 \todo[inline]{Throughout this example, would it be better to use Borel/Baire $\sigma$-algebras instead?
 
@@ -508,6 +511,12 @@ In general, we then define a category $L^\infty(X,\cat{C})$ as follows:
 
 In particular, this means that two objects $A$ and $B$ which differ only on a null set are isomorphic.
 
+\begin{ex}
+In the situation of Example~\ref{nrep_measurable}, a family of representations $x \mapsto (\H_x,\pi_x)$ is measurable if and only if the following holds: there is a countable measurable partition $X = \coprod_{n\in\N} X_n$, such that $x\mapsto \H_x$ is constant on each part $X_n$, and such that on each part $X_n$, the function $x \mapsto \pi_x$ is measurable.
+
+More concretely, let us consider $\Rep{C(S^1)} \cong \NRep{C(S^1)^{**}}$ and $X := S^1$, equipped with its usual $\sigma$-algebra and measure (the normalization is irrelevant). To every $x\in X$ we assign the Hilbert space $\C$, together with the unitary given by multiplication by $x$. This induces a representation of $C(S^1)$, or equivalently a normal representation of $C(S^1)^{**}$, as usual via functional calculus, which in this case simply corresponds to function evaluation at $x\in S^1$. Measurability of the function $x\mapsto \pi_x$ amounts to measurability of each map $x\mapsto \langle\xi,\pi(a)\xi\rangle$ for $\xi\in\C$ and $a\in C(S^1)^{**}$, or equivalently measurability of $x\mapsto |\xi|^2 a(x)$, which is obvious, since the evaluation at $x$ factors through the canonical homomorphism $C(S^1)^{**} \to \mathcal{L}^\infty(S^1)$, where $\mathcal{L}^\infty$ denotes the algebra of bounded measurable functions (without modding out by null sets).
+\end{ex}
+
 \begin{prop}
 $L^\infty(X,\cat{C})$ is a W$^*$-category as well.
 \end{prop}
@@ -515,6 +524,8 @@ $L^\infty(X,\cat{C})$ is a W$^*$-category as well.
 So the categories $L^\infty(X,\Hilb)$ are our version of Yetter's \emph{categories of measurable fields of Hilbert spaces}.
 
 \todo[inline]{Can we make the comparison more precise? Yetter only considers the separable case, but in this case I expect they coincide.}
+
+\todo[inline]{$L^\infty(X,\cat{C})$ is pseudo-functorial in $X$. Does the resulting fibration satisfy interesting descent conditions? (Suggestion due to Andr\'e{} Henriques on MO.)}
 
 \begin{proof}
 It is clear that $L^\infty(X,\cat{C})$ inherits the antilinear involution from $\cat{C}$. The norm of a morphism is defined as
