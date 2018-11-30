@@ -1,0 +1,214 @@
+\documentclass{article}
+\usepackage{import}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{xypic}
+\usepackage[backref=page]{hyperref} % put [hidelinks] in if you want to hide the link
+%\usepackage{showkeys} % comment out in final versions
+
+% the following package defines a command
+% \externaldocument[prefix]{documentname}
+% to import the labels, with optional 
+% prefix prefix from documentname, without
+% importing the document. 
+% One can then use \ref and \pageref as normal.
+\usepackage{xr}
+
+\title{}
+\author{}
+
+%Bart's macro for a hidden proof
+\newif\ifignore
+
+% flip these round to expose and hide auxproofs
+\ignoretrue
+%\ignorefalse
+
+\newcommand{\TC}{\ensuremath{\mathcal{TC}}}
+\newcommand{\blank}{\ensuremath{{\mbox{-}}}}
+\newcommand{\NRep}{\cat{NRep}}
+\newcommand{\Ell}{\mathcal{L}}
+\newcommand{\tr}{\ensuremath{\mathrm{tr}}}
+\renewcommand{\d}[1]{\operatorname{d}\!{#1}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\cat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\Hil}{\ensuremath{\mathcal{H}}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newenvironment{myproof}[1][\textnormal{\emph{Proof.}}]%
+    { \begin{trivlist}%
+        \item[\hskip \labelsep {\bfseries #1}]%
+    }%
+    { \end{trivlist}%
+    }
+
+
+\begin{document}
+\maketitle
+
+Dear Tobias,
+
+This is my explanation of why what you wrote about measurability in $\NRep(C(S^1)^{**})$ in Example 4.2 is wrong. 
+
+First I will recap your example of a measurable family, so there is no doubt as to what I am referring to. For each $x \in X$, we define the representation $\pi_x : C(S^1) \rightarrow B(\C)$, where $\C$ has its usual Hilbert space structure, by
+\[
+\pi_x(a)(\psi) = a(x)\psi,
+\]
+where $a \in C(S^1)$ and $\psi \in \C$. I do not dispute the fact that $(\pi_x)_{x \in S^1}$ is a measurable family of representations of $C(S^1)$ (with $S^1$ being given either the Borel $\sigma$-algebra or Lebesgue measure $\sigma$-algebra when it is considered as the parameter space of the family). 
+
+We then extend each $\pi_x$ to a normal representation $\tilde{\pi}_x$ of $C(S^1)^{**}$ in the canonical way. When doing this, it helps to have the following definition. We define, for all $x \in S^1$, $\delta_x \in C(S^1)^*$:
+\[
+\delta_x(a) = a(x),
+\]
+where $a \in C(S^1)$. So $\pi_x(a)(\psi) = \delta_x(a)\psi$. The extension $\tilde{\pi}_x$ can be defined by
+\[
+\tilde{\pi}_x(\Phi)(\psi) = \Phi(\delta_x)\psi,
+\]
+where $\Phi \in C(S^1)^{**}$ and $\psi \in \C$. It is clear that this agrees with $\pi_x$ on the double-dual embedding $C(S^1) \rightarrow C(S^1)^{**}$, and it is a normal representation because for every trace-class operator $\rho \in \TC(\Hil)$, $\Phi \mapsto \tr(\Phi(\delta_x)\rho) = \Phi(\delta_x)\rho = \Phi(\rho\delta_x)$ is a normal linear functional on $C(S)^{**}$ (arising from evaluating at $\rho\delta_x \in C(S^1)^*$). Since the image of $C(S^1) \rightarrow C(S^1)^{**}$ is $\sigma(C(S^1)^{**},C(S^1)^*)$-dense in $C(S^1)^{**}$, this proves that $\tilde{\pi}_x$, as defined above, is the unique normal extension of $\pi_x$ to $C(S^1)^{**}$. 
+
+You claim that the maps $x \mapsto \langle \psi, \tilde{\pi}_x(\Phi)(\psi) \rangle$ are measurable for all $\psi \in \C$, and $\Phi \in C(S^1)^{**}$. Specializing to $\psi = 1$, this would imply that $x \mapsto \Phi(\delta_x)$ is measurable for all $\Phi \in C(S^1)^{**}$. This is what I shall refute in the next section. 
+
+\section{Unmeasurability Proof}
+To show that these maps are not all measurable, we will need some background bits and pieces. Let $M(S^1)$ be the space of finite complex (Borel) measures on $S^1$, with its usual topology. Then the Riesz representation theorem states that the map $i : M(S^1) \rightarrow C(S^1)^*$
+\[
+i(\mu)(a) = \int_{S^1}a \d{\mu},
+\]
+where $a \in C(S^1)$, is a positive linear isomorphism. We use $j : C(S^1)^* \rightarrow M(S^1)$ for its inverse. We can therefore define a map $k : \Ell^\infty(S^1) \rightarrow C(S^1)^{**}$ as follows:
+\[
+k(a)(\phi) = \int_{S^1}a \d{j(\phi)},
+\]
+where $a \in C(S^1)$, $\phi \in C(S^1)^*$ and therefore $j(\phi) \in M(S^1)$. 
+
+To prove that $k$ is a *-homomorphism, we need the definition of the $\blank^*$ and multiplication in $A^{**}$, where $A$ is a C$^*$-algebra. This can be found in \cite[\S 3.1]{dauns}. For $a,b \in A$, $\phi \in A^*$ and $\Phi,\Psi \in A^{**}$, we define
+\begin{align*}
+(\phi \cdot a)(b) &= \phi(ab) \\
+(\Phi \cdot \phi)(a) &= \Phi(\phi \cdot a) \\
+(\Phi \cdot \Psi)(\phi) &= \Phi(\Psi \cdot \phi).
+\end{align*}
+As we work in the commutative case, it actually does not matter which side we put the multiplication by $a$ on. We have $\phi \cdot a \in A^*$, $\Phi \cdot \phi \in A^*$ and $\Phi \cdot \Psi \in A^{**}$. 
+Similarly, the $\blank^*$ is defined by
+\begin{align*}
+\phi^*(a) &= \overline{\phi(a^*)} \\
+\Phi^*(\phi) &= \overline{\Phi(\phi^*)}.
+\end{align*}
+
+Recall that given a measure $\mu \in M(S^1)$ and a function $a \in \Ell^1(\mu)$, we can define a measure $a \cdot \mu$ by
+\[
+(a \cdot \mu)(T) = \int_{S^1}\chi_T a \d{\mu}
+\]
+We will use the fact that for any finite complex measure $\mu$, $\Ell^\infty(S^1) \subseteq \Ell^1(\mu)$. 
+
+\begin{lemma}
+\label{ModuleIsoLemma}
+Let $a,b \in \Ell^\infty(S^1)$ and $\mu \in M(S^1)$. Then
+\[
+\int_{S^1} b \d{(a \cdot \mu)} = \int_{S^1} b a \d{\mu}.
+\]
+This implies that if $a \in C(S^1)$,
+\[
+i(a \cdot \mu) = i(\mu) \cdot a.
+\]
+Therefore for $a \in C(S^1)$ and $\phi \in C(S^1)^*$
+\[
+j(\phi \cdot a) = a \cdot j(\phi).
+\]
+\end{lemma}
+\begin{proof}
+We first prove that for all $a, b \in \Ell^\infty(S^1)$,
+\[
+\int_{S^1} b \d{(a \cdot \mu)} = \int_{S^1} b a \d{\mu}.
+\]
+It is true for $b = \chi_{T}$ for a Borel set $T$ by definition. By linearity it is true for simple functions. We can then take a sequence of simple functions $(b_i)_{i \in \N}$ approximating any given $b \in \Ell^\infty(S^1)$ pointwise and deduce that it is true for $b \in \Ell^\infty(S^1)$ by the dominated convergence theorem. Since continuous functions are Borel measurable, for all $a, b \in C(S^1)$ we have
+\[
+i(a \cdot \mu)(b) = \int_{S^1}b \d{(a \cdot \mu)} = \int_{S^1}ba\d{\mu} = i(\mu)(ba) = i(\mu)(ab) = (i(\mu) \cdot a)(b)
+\]
+This proves the second statement. Now, let $a \in C(S^1)$ and $\phi \in C(S^1)^*$. Then
+\[
+i(a \cdot j(\phi)) = i(j(\phi)) \cdot a = \phi \cdot a = i(j(\phi \cdot a)),
+\]
+so, as $i$ is an isomorphism, $a \cdot j(\phi) = j(\phi \cdot a)$. 
+\end{proof}
+
+\begin{lemma}
+\label{KHomomorphismLemma}
+$k$ is a *-homomorphism.
+\end{lemma}
+\begin{proof}
+By linearity of integration, $k$ is linear. Let $a,b \in \Ell^\infty(S^1)$. Then for all $\phi \in C(S^1)^*$:
+\[
+(k(a) \cdot k(b))(\phi) = k(a)(k(b) \cdot \phi) = \int_{S^1}a \d{j(k(b) \cdot \phi)}
+\]
+For all $c \in C(S^1)$, we have 
+\begin{align*}
+(k(b) \cdot \phi)(c) &= k(b)(\phi \cdot c) \\
+ &= \int_{S^1}b \d{j(\phi \cdot c)} \\
+ &= \int_{S^1}b \d{(c \cdot j(\phi))} & \text{Lemma \ref{ModuleIsoLemma}}\\
+ &= \int_{S^1}b c \d{j(\phi)} & \text{Lemma \ref{ModuleIsoLemma}} \\
+ &= \int_{S^1}cb \d{j(\phi)} \\
+ &= \int_{S^1}c \d{(b \cdot j(\phi))}.
+\end{align*}
+Therefore $k(b) \cdot \phi = i(b \cdot j(\phi))$, so $j(k(b) \cdot \phi) = b \cdot j(\phi)$. So
+\begin{align*}
+(k(a) \cdot k(b))(\phi) &= k(a)(k(b) \cdot \phi) \\
+ &= \int_{S^1}a \d{j(k(b) \cdot \phi)} \\
+ &= \int_{S^1}a \d{(b \cdot j(\phi))} \\
+ &= \int_{S^1}ab \d{j(\phi)} & \text{Lemma \ref{ModuleIsoLemma}} \\
+ &= k(ab).
+\end{align*}
+To prove that $k(a^*) = k(a)^*$, we use the fact that $\Phi^*$ is characterized by the fact that $\Phi^*(\phi) = \overline{\Phi(\phi)}$ for all self-adjoint $\phi$. Let $\phi$ be a self-adjoint element of $C(S^1)^*$, so $j(\phi)$ is a real signed measure. Then for all $a \in C(S^1)$,
+\begin{align*}
+k(a^*)(\phi) &= \int_{S^1}a^* \d{j(\phi)} \\
+ &= \int_{S^1}\Re(a^*) + i\Im(a^*) \d{j(\phi)} \\
+ &= \int_{S^1}\Re(a) - i\Im(a) \d{j(\phi)} \\
+ &= \int_{S^1}\Re(a)\d{j(\phi)} - i\int_{S^1}\Im(a)\d{j(\phi)} \\
+ &= \overline{\int_{S^1}\Re(a)\d{j(\phi)} + i\int_{S^1}\Im(a)\d{j(\phi)}} \\
+ &= \overline{\int_{S^1}a\d{j(\phi)}} \\
+ &= \overline{k(a)(\phi)} \\
+ &= k(a)^*(\phi^*) \\
+ &= k(a)^*(\phi),
+\end{align*}
+because $\phi$ is self-adjoint. 
+\end{proof}
+
+Using the map $k$, we can construct a family of projections in $C(S^1)^{**}$ corresponding to points in $S^1$. We define, for all $x \in S^1$,
+\[
+p_x = k(\chi_{\{x\}}).
+\]
+As $k$ is a *-homomorphism, $p_x$ is a projection in $C(S^1)^{**}$, and $(p_x)_{x \in S^1}$ is an orthogonal family of projections. 
+
+\begin{theorem}
+There exist elements $\Phi \in C(S^1)^{**}$ such that $x \mapsto \Phi(\delta_x)$ is not measurable. Therefore, for such $\Phi$, $x \mapsto \langle 1, \pi_x(\Phi)(1) \rangle$ is not measurable. 
+\end{theorem}
+\begin{proof}
+Let $T \subseteq S^1$ be an unmeasurable set. As $C(S^1)^{**}$ is a W$^*$-algebra, its projection lattice is complete, so we can define 
+\[
+\Phi = \bigvee_{x \in T}p_x
+\]
+By \cite[\S 30 Theorem 1]{halmosHilb}, sums of orthogonal families of projections on a Hilbert space converge to their joins in the strong operator topology (and \emph{a fortiori} in the weak operator topology). By taking a faithful normal representation of $C(S^1)^{**}$ on a Hilbert space, and using the fact that the weak operator topology and the ultraweak topology agree on norm-bounded sets, $\sum_{x \in T}p_x = \Phi$ in the ultraweak topology, $\sigma(C(S^1)^{**},C(S^1)^*)$. So $\Phi(\phi) = \sum_{x \in T}p_x(\phi)$ for all $\phi \in C(S^1)^*$. 
+
+For $x,y \in S^1$, we have 
+\[
+p_x(\delta_y) = k(\chi_{\{x\}})(\delta_y) = \int_{S^1}\chi_{\{x\}}\d{j(\delta_y)} = j(\delta_y)(\{x\}),
+\]
+which is $1$ if $x = y$ and $0$ if $x \neq y$. So $\Phi(\delta_x)$ is $1$ if $x \in T$ and $0$ otherwise, and so $(x \mapsto \Phi(\delta_x)) = \chi_T$, which is not measurable.
+\end{proof}
+
+
+Your argument refers to a ``canonical morphism'' $C(S^1)^{**} \rightarrow \Ell^\infty(S^1)$, but there is no such thing. Perhaps you are under the illusion that $\Ell^\infty(S^1)$ is a W$^*$-algebra. 
+
+To some extent the counterexample above can be viewed as arising from the map $C(S^1)^{**} \rightarrow \ell^\infty(S^1)$, the adjoint of the inclusion $\ell^1(S^1) \rightarrow C(S^1)^*$. This is because $\ell^\infty(S^1)$ is thereby expressed as a direct summand of $C(S^1)^{**}$. 
+
+Best wishes,
+Robert
+
+\bibliographystyle{unsrt}
+\bibliography{fromrobert}
+
+\end{document}
