@@ -149,9 +149,9 @@ Let $\cat{C}$ be an additive category and $A_1,A_2\in\cat{C}$ two objects. Then 
 		\[
 			\cat{C} \longrightarrow \cat{Ab}, \qquad B \longmapsto \cat{C}(A_1, B) \times \cat{C}(A_2, B)
 		\]
-	\item\label{prod} $A$ represents the functor
+    \item\label{prod} $A$ represents the functor
 		\[
-			\cat{C}^\op \longrightarrow \cat{Ab}, \qquad B \longmapsto \cat{C}(A_1, B) \times \cat{C}(A_2, B)
+			\cat{C}^\op \longrightarrow \cat{Ab}, \qquad B \longmapsto \cat{C}(B, A_1) \times \cat{C}(B, A_2)
 		\]
 	\item\label{biprod} There are morphisms $p_i : A \to A_i$ and $\kappa_i : A_i \to A$ satisfying the \emph{biproduct equations}
 	\[
@@ -173,7 +173,79 @@ In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categori
 \section{C$^*$-categories and W$^*$-categories}
 \label{background}
 
-\todo[inline]{State the basic definitions}
+Before we define C$^*$- and~W$^*$-category, we give some context.
+A C$^*$-category is a caterogical generalization of a unital C$^*$-algebra
+    in the sense that in a~C$^*$-category~$\cat{C}$,
+    every homset~$\cat{C}(A,A)$ will be a unital~C$^*$-algebra.
+Similarly~$\cat{C}(A,A)$ will be a~W$^*$-algebra
+    in a~W$^*$-category $\cat{C}$.
+As the definitions of~C$^*$- and~W$^*$-categories
+    will implicitly define~C$^*$- and W$^*$-algebras,
+    we'll make do with a few short comments.
+Every subalgebra of the algebra of complex~$n\times n$-matrices
+    is a C$^*$- and~W$^*$-algebra.
+More generally, every norm closed subalgebra of~$\B{\H}$,
+    the bounded operators on a Hilbert space~$\H$,
+    is a C$^*$-algebra and, in fact,
+    every C$^*$-algebra is isomorphic to such a norm-closed subalgebra
+        of~$\B{\H}$ for some Hilbert space~$\H$.
+Every weakly closed subalgebra of~$\B{\H}$ is a W$^*$-algebra
+    and every W$^*$-algebra is isomorphic to such a weakly closed subalgebra
+Every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some
+    compact Hausdorff space~$X$
+        and every~W$^*$-algebra is isomorphic to~$L^\infty(X)$ for some
+            complete finite measure space~$X$.
+\begin{defn}
+    Let~$\cat{C}$ be a category together with a contravariant endofunctor~$*\colon \cat{C} \to \cat{C}^\op$,
+    whose action on arrows we'll denote by~$a\mapsto a^*$.
+    The following definitions are due to Ghez, Lima and Roberts \cite{wstarcat}.
+\begin{enumerate}
+\item
+    $\cat{C}$ (together with~$*$) is called a \emph{complex~$*$-category} if the following axioms hold.
+\begin{enumerate}
+    \item $\cat{C}$ is enriched over complex vector spaces ---
+            i.e.~every homset~$\cat{C}(A,B)$ is a complex vector space
+                and function composition is bilinear.
+    \item The contravariant endofunctor~$*$ is identity-on-objects,
+            involutive and conjugate-linear ---
+         i.e.~$a^*\colon B\to A$, $a^{**}=a$, $(ab)^*=b^*a^*$, $(\lambda a)^* = \overline{\lambda} a^*$ and
+            $(a+c)^* = a^* + c^*$ for arrows~$a, c\colon A \to B$, ~$b\colon C \to A$
+                and complex number~$\lambda$.
+        (This turns~$\cat{C}(A,A)$ into a~$*$-algebra.)
+    \item For any~$a\colon A \to B$
+            we have~$a=0$ whenever~$a^*a=0$.
+                Furthermore, there is a~$b\colon A \to A$
+            with~$a^*a=b^*b$ --- equivalently:
+            $a^*a$ is positive in the~$*$-algebra~$\cat{C}(A,A)$.
+\end{enumerate}
+\item
+    $\cat{C}$ (together with~$*$) is called a~\emph{normed $*$-category}
+            if it is a complex~$*$-category
+            where each~$\cat{C}(A,B)$ is a normed space and~$\| ab \| \leq \|a\|\|b\|$
+                for any~$a\colon B \to C$ and~$b\colon A \to B$.
+\item
+    $\cat{C}$ (together with~$*$) is called a~\emph{C$^*$-category}
+            if it is a normed~$*$-category
+            where every homset is norm-complete
+            and~$\|a \|^2 = \|a^*a\|$.
+        (This turns~$\cat{C}(A,A)$ into a unital~C$^*$-algebra.)
+\item
+    $\cat{C}$ is a~\emph{W$^*$-category}
+        if it is a~C$^*$-category
+        where every homset has a Banach space predual.
+        Equivalently~\cite[Prop.~2.15]{wstarcat}, a C$^*$-category~$\cat{C}$
+            is a~W$^*$-category
+            if every~$\cat{C}(A,A)$ is a W$^*$-algebra
+            and~$\cat{C}(A,B)$ is self-dual
+            as a Hilbert~$(A,A)$-module
+            with inner product~$\langle a,b\rangle \equiv a^*b$.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+The category of Hilbert spaces with bounded linear maps between them
+    is a W$^*$-category.
+\end{ex}
 
 \begin{ex}
 \label{rep_ex}
