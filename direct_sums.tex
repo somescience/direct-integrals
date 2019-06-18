@@ -9,6 +9,7 @@
 \usepackage{xifthen} % provides \isempty
 \usepackage{xparse} % new commands with more than one optional argument
 \usepackage{fixltx2e} % for \textsubscript
+\usepackage{comment}
 \newcommand{\unlim}{\qopname\relax m{unlim}}
 \newcommand{\uwlim}{\qopname\relax m{uwlim}}
 
@@ -82,6 +83,8 @@ urlcolor=myurlcolor}
 %%%%%%%%%%%% Enumeration via lowercase letters
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\renewcommand{\theenumii}{(\roman{enumii})}
 \renewcommand{\labelitemi}{$\circ$}
 
 %%% pagebreaks allowed for align environment
@@ -118,19 +121,20 @@ urlcolor=myurlcolor}
 \author{Tobias Fritz}
 \author{Bas Westerbaan}
 
-\address{Perimeter Institute for Theoeretical Physics}
+\address{Perimeter Institute for Theoeretical Physics, Waterloo, Ontario, Canada}
 \email{tfritz@pitp.ca}
 
-\address{add your affiliation here}
+\address{Institute for Computing and Information Sciences, Radboud Universiteit Nijmegen, The Netherlands}
+\email{bas@westerbaan.name}
 
 \keywords{}
 
-\subjclass[2010]{Primary: ; Secondary: }
+\subjclass[2010]{Primary: 46M15; Secondary: 18E05, 46L10}
 
 \thanks{\textit{Acknowledgements.} We thank Robert Furber for copious help and discussion. Part of this work was conducted while the first author was at the Max Planck Institute for Mathematics in the Sciences in Leipzig, Germany.}
 
 \begin{abstract}
-When formulating universal properties for objects in a dagger category, one usually expects a universal property to characterize the universal object up to unique \emph{unitary} isomorphism. We observe that this is automatically the case in the important special case of C$^*$-categories if one uses enrichment in Banach spaces. We then formulate such a universal property for infinite direct sums in C$^*$-categories, and prove the equivalence with the existing definition due to Ghez, Lima and Roberts in the case of W$^*$-categories. This notion specializes to the standard infinite direct sums in the case of a W$^*$-category of normal representations of a W$^*$-algebra.
+When formulating universal properties for objects in a dagger category, one usually expects a universal property to characterize the universal object up to unique \emph{unitary} isomorphism. We observe that this is automatically the case in the important special case of C$^*$-categories, provided that one uses enrichment in Banach spaces. We then formulate such a universal property for infinite direct sums in C$^*$-categories, and prove the equivalence with the existing definition due to Ghez, Lima and Roberts in the case of W$^*$-categories. These infinite direct sums specialize to the usual ones in the category of Hilbert spaces, and more generally in any W$^*$-category of normal representations of a W$^*$-algebra.
 
 Finding a universal property for the more general case of direct integrals remains an open problem.
 \end{abstract}
@@ -139,11 +143,11 @@ Finding a universal property for the more general case of direct integrals remai
 
 \section{Introduction}
 
-Among the most central and useful concepts of category theory is the notion of universal property. Its utility relates to the fact that a universal property characterizes an object up to unique isomorphism, and to the vast number of mathematical construction which can be defined or characterized in terms of universal properties. Among these is the concept of \emph{direct sum} of two objects $A_1$ and $A_2$ in an additive category $\cat{C}$: the direct sum $A_1\oplus A_2$, which can be defined in several equivalent ways via the following standard result:
+Among the most central and useful concepts of category theory is the notion of universal property. Its utility relates to the fact that a universal property characterizes an object up to unique isomorphism, and to the vast number of mathematical construction which can be defined or characterized in terms of universal properties. Among these is the concept of \emph{direct sum} of two objects $A_1$ and $A_2$ in an additive category $\cat{C}$. It can be defined in several equivalent ways via the following standard result, where $\cat{Ab}$ is the category of abelian groups.
 
 \begin{thm}[{e.g.~\cite[Proposition~1.2.4]{borceux}}]
 \label{directsum_equiv_trad}
-Let $\cat{C}$ be an additive category and $A_1,A_2\in\cat{C}$ two objects. Then the following pieces of structure are equivalent for an object $A\in\cat{A}$:
+Let $\cat{C}$ be an additive category and $A_1,A_2\in\cat{C}$ two objects. Then the following pieces of structure are equivalent for an object $A\in\cat{C}$:
 \begin{enumerate}
 	\item\label{coprod} $A$ represents the functor
 		\[
@@ -162,9 +166,9 @@ Let $\cat{C}$ be an additive category and $A_1,A_2\in\cat{C}$ two objects. Then 
 
 Here, \ref{coprod} and~\ref{prod} state that $A$ is a coproduct and product of $A_1$ and $A_2$, respectively. \ref{biprod} is a purely equational characterization which also proves that direct sums are preserved by every additive functor.
 
-Traditionally, universal properties have been formulated mostly for purely algebraic structures only. Treating analytical structures categorically is straightforward in some cases, but very challenging in many other cases. It usually involves equipping the categories under consideration themselves with certain analytical structures. An interesting case of where this happens is the theory of \emph{W$^*$-categories}, which model categories of Hilbert space representations of C$^*$-algebras or W$^*$-algebras, with the most paradigmatic example of a W$^*$-category being $\Hilb$, the category of Hilbert spaces with bounded linear maps.
+Traditionally, universal properties have been formulated mostly for purely algebraic structures only. Treating analytical structures categorically is straightforward in some cases, but very challenging in many other cases. It usually involves equipping the categories under consideration themselves with certain analytical structures. An interesting case of where this happens is the theory of \emph{W$^*$-categories}, which model categories of Hilbert space representations of C$^*$-algebras or W$^*$-algebras. The most paradigmatic example of a W$^*$-category being $\Hilb$, the category of Hilbert spaces with bounded linear maps.
 
-In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categories and in the more general case of C$^*$-categories. (Our definitions and results also apply to the case of finite direct sums, but reduce to Theorem~\ref{directsum_equiv_trad} in this case.) As the most basic example, the Hilbert space $\ell^2(I)$ for a (finite or) infinite set $I$ is the direct sum of $I$ many copies of $\C$. Part of the \emph{raison d'\^{e}tre} for analytic structure on an algebraic object is that it often makes the objects under consideration more well-behaved. This is indeed what happens in our case as well: while Theorem~\ref{directsum_equiv_trad} does not generalize to infinite direct sums since infinite coproducts and infinite products do no longer coincide in a general additive category (even when they exist), our main result (Theorem~\ref{directsum_equiv}) provides such a generalization for infinite direct sums in W$^*$-categories.
+In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categories and in the more general case of C$^*$-categories. While our definitions and results also apply to the case of finite direct sums, they reduce to the standard Theorem~\ref{directsum_equiv_trad} in this case. As the most basic example, the Hilbert space $\ell^2(I)$ for a (finite or) infinite set $I$ is the direct sum of $I$ many copies of $\C$. Part of the \emph{raison d'\^{e}tre} for analytic structure on an algebraic object is that it often makes the objects under consideration more well-behaved. This is indeed what happens in our case as well: while Theorem~\ref{directsum_equiv_trad} does not generalize to infinite direct sums, since infinite coproducts and infinite products do no longer coincide in a general additive category (even when they exist), our main result (Theorem~\ref{directsum_equiv}) provides such a generalization for infinite direct sums in W$^*$-categories.
 
 \subsection*{Summary} After giving some background on C$^*$-categories and W$^*$-categories in Section~\ref{background}, we start by investigating universal properties for objects in C$^*$-categories in Section~\ref{univ_props}. We find that defining universal properties in terms of representability of a functor enriched in Banach spaces provides a good notion of universal property in a C$^*$-category, since it guarantees uniqueness up to unique \emph{unitary} isomorphism of the representing object. We then introduce our definition of the particular universal property of infinite direct sums in C$^*$-categories in Section~\ref{sec_directsum_def}. In Section~\ref{wstarcatcase}, we specialize to the case of W$^*$-categories, and prove an analog of Theorem~\ref{directsum_equiv_trad} in this setting, showing that our infinite direct sums are equivalent to the direct sums in W$^*$-categories as introduced originally by Ghez, Lima and Roberts~\cite{wstarcat}. 
 
@@ -173,67 +177,77 @@ In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categori
 \section{C$^*$-categories and W$^*$-categories}
 \label{background}
 
-Before we define C$^*$- and~W$^*$-category, we give some context.
-A C$^*$-category is a caterogical generalization of a unital C$^*$-algebra
-    in the sense that in a~C$^*$-category~$\cat{C}$,
-    every homset~$\cat{C}(A,A)$ will be a unital~C$^*$-algebra.
-Similarly~$\cat{C}(A,A)$ will be a~W$^*$-algebra
-    in a~W$^*$-category $\cat{C}$.
+A category can be thought of as a many-object version of a monoid. This manifests itself in the fact that for any category $\cat{C}$, every endomorphism homset $\cat{C}(A,A)$ is a monoid. In the same way, a C$^*$-category is a many-object version of a unital C$^*$-algebra. Indeed in a~C$^*$-category~$\cat{C}$, every homset~$\cat{C}(A,A)$ will be a unital~C$^*$-algebra. Similarly, a W$^*$-category $\cat{C}$ is a many-object version of a W$^*$-algebra, and every homset~$\cat{C}(A,A)$ indeed carries the structure of a~W$^*$-algebra.
+ 
+\begin{comment} % T: I'm not sure if the following would be helpful, given that we assume familiarity with C*- and W*-algebras
 As the definitions of~C$^*$- and~W$^*$-categories
     will implicitly define~C$^*$- and W$^*$-algebras,
-    we'll make do with a few short comments.
+    we only comment briefly on the latter.
 Every subalgebra of the algebra of complex~$n\times n$-matrices
     is a C$^*$- and~W$^*$-algebra.
-More generally, every norm closed subalgebra of~$\B{\H}$,
+More generally, every norm closed and $*$-closed subalgebra of~$\B{\H}$,
     the bounded operators on a Hilbert space~$\H$,
     is a C$^*$-algebra and, in fact,
-    every C$^*$-algebra is isomorphic to such a norm-closed subalgebra
+    every C$^*$-algebra is isomorphic to such a subalgebra
         of~$\B{\H}$ for some Hilbert space~$\H$.
-Every weakly closed subalgebra of~$\B{\H}$ is a W$^*$-algebra
-    and every W$^*$-algebra is isomorphic to such a weakly closed subalgebra
-Every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some
-    compact Hausdorff space~$X$
-        and every~W$^*$-algebra is isomorphic to~$L^\infty(X)$ for some
-            complete finite measure space~$X$.
+Every weakly closed subalgebra of~$\B{\H}$ is a W$^*$-algebra,
+    and every W$^*$-algebra is isomorphic to such a weakly closed subalgebra.
+Moreover, every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some
+    compact Hausdorff space~$X$, 
+        and every commutative W$^*$-algebra is isomorphic to~$L^\infty(X,\mu)$ for some
+            complete finite measure space~$(X,\mu)$.
+\end{comment}
+
+    The following precise definitions are due to Ghez, Lima and Roberts \cite{wstarcat}.
+
 \begin{defn}
-    Let~$\cat{C}$ be a category together with a contravariant endofunctor~$*\colon \cat{C} \to \cat{C}^\op$,
-    whose action on arrows we'll denote by~$a\mapsto a^*$.
-    The following definitions are due to Ghez, Lima and Roberts \cite{wstarcat}.
+    Let~$\cat{C}$ be a category together with an endofunctor~$*\,\colon \cat{C} \to \cat{C}^\op$,
+    whose action on arrows we denote by~$a\mapsto a^*$. The pair $(\cat{C},*)$ is called a \emph{complex~$*$-category} if the following conditions hold.
 \begin{enumerate}
-\item
-    $\cat{C}$ (together with~$*$) is called a \emph{complex~$*$-category} if the following axioms hold.
-\begin{enumerate}
-    \item $\cat{C}$ is enriched over complex vector spaces ---
-            i.e.~every homset~$\cat{C}(A,B)$ is a complex vector space
-                and function composition is bilinear.
-    \item The contravariant endofunctor~$*$ is identity-on-objects,
-            involutive and conjugate-linear ---
-         i.e.~$a^*\colon B\to A$, $a^{**}=a$, $(ab)^*=b^*a^*$, $(\lambda a)^* = \overline{\lambda} a^*$ and
-            $(a+c)^* = a^* + c^*$ for arrows~$a, c\colon A \to B$, ~$b\colon C \to A$
-                and complex number~$\lambda$.
-        (This turns~$\cat{C}(A,A)$ into a~$*$-algebra.)
-    \item For any~$a\colon A \to B$
-            we have~$a=0$ whenever~$a^*a=0$.
-                Furthermore, there is a~$b\colon A \to A$
-            with~$a^*a=b^*b$ --- equivalently:
-            $a^*a$ is positive in the~$*$-algebra~$\cat{C}(A,A)$.
+    \item $\cat{C}$ is enriched over complex vector spaces, meaning that:
+	    \begin{enumerate}
+		    \item every homset~$\cat{C}(A,B)$ is a complex vector space,
+		    \item composition of morphisms is bilinear.
+	   \end{enumerate}
+    \item The contravariant endofunctor~$*$ is
+	    \begin{enumerate}
+		    \item identity-on-objects: $a^* : B \to A$ for $a : A \to B$,
+		    \item involutive: $a^{**} = a$,
+		    \item conjugate linear:
+			    \[
+				    (\lambda a)^* = \overline{\lambda} a^*,\qquad (a+b)^* = a^* + b^*
+			    \]
+			    for morphisms $a, b : A \to B$ and $\lambda\in\C$.
+	    \end{enumerate}
+    \item For every morphism~$a : A \to B$,
+	    \begin{enumerate}
+		    \item There is $b :  A \to A$ with~$a^*a=b^*b$,
+		    \item $a^*a=0$ implies $a = 0$.
+	    \end{enumerate}
 \end{enumerate}
-\item
-    $\cat{C}$ (together with~$*$) is called a~\emph{normed $*$-category}
-            if it is a complex~$*$-category
-            where each~$\cat{C}(A,B)$ is a normed space and~$\| ab \| \leq \|a\|\|b\|$
+\end{defn}
+
+It is easy to see that in a complex $*$-category $\cat{C}$, every endomorphism homset $\cat{C}(A,A)$ carries the structure of a complex $*$-algebra. 
+
+\begin{defn}
+A complex $*$-category $(\cat{C},*)$ is called a
+\begin{enumerate}
+	\item \emph{normed $*$-category} if each homset~$\cat{C}(A,B)$ is a normed space such that
+	    \[
+		    \| ab \| \leq \|a\| \, \|b\|
+	    \]
                 for any~$a\colon B \to C$ and~$b\colon A \to B$.
-\item
-    $\cat{C}$ (together with~$*$) is called a~\emph{C$^*$-category}
-            if it is a normed~$*$-category
-            where every homset is norm-complete
-            and~$\|a \|^2 = \|a^*a\|$.
-        (This turns~$\cat{C}(A,A)$ into a unital~C$^*$-algebra.)
-\item
-    $\cat{C}$ is a~\emph{W$^*$-category}
-        if it is a~C$^*$-category
+	\item\label{Cstarcat}
+    \emph{C$^*$-category} if moreover every homset is norm-complete, and the C$^*$-identity
+    \[
+	\|a \|^2 = \|a^*a\|
+     \]
+	holds for every morphism $a$.
+\item\label{Wstarcat}
+    \emph{W$^*$-category} if moreover
         where every homset has a Banach space predual.
-        Equivalently~\cite[Prop.~2.15]{wstarcat}, a C$^*$-category~$\cat{C}$
+        
+	Equivalently~\cite[Prop.~2.15]{wstarcat}, a C$^*$-category~$\cat{C}$
             is a~W$^*$-category
             if every~$\cat{C}(A,A)$ is a W$^*$-algebra
             and~$\cat{C}(A,B)$ is self-dual
@@ -242,9 +256,13 @@ Every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some
 \end{enumerate}
 \end{defn}
 
+Clearly if we have \ref{Cstarcat}, then every $\cat{C}(A,A)$ is a C$^*$-algebra. Similarly, \ref{Wstarcat} makes $\cat{C}(A,A)$ into a W$^*$-algebra.
+
+We again refer to~\cite{wstarcat} for more details on the following examples.
+
 \begin{ex}
 The category of Hilbert spaces with bounded linear maps between them
-    is a W$^*$-category.
+    is a W$^*$-category in the obvious way, meaning that $*$ takes each bounded linear map to its adjoint and the norm is the operator norm.
 \end{ex}
 
 \begin{ex}
@@ -345,8 +363,6 @@ This uniqueness up to unique unitary is a desideratum of a good notion of univer
 \section{The universal property of infinite direct sums}
 \label{sec_directsum_def}
 
-\tob{I've generalized the defn of direct sum from C$^*$-categories, where it works just the same way as for W$^*$-categories, except for Theorem~\ref{directsum_equiv}. Does this seem reasonable?}
-
 We now turn to the study of infinite direct sums by defining them in terms of a universal property as in Definition~\ref{def_univ}, and then proving that the existing notions of direct sum in the category of Hilbert spaces and more generally all W$^*$-categories indeed satisfy this universal property. While our considerations also apply to finite direct sums as a special case, in this case our discussion provides nothing new, since then our universal property reduces to the standard one of biproducts in an additive category.
 
 We again let $\cat{C}$ be a C$^*$-category. Let $I$ be a finite or infinite index set. For $(A_i)_{i\in I}$ a family of objects in $\cat{C}$, we consider the functor
@@ -436,7 +452,6 @@ For finite $I$, our direct sums are also dagger limits in the sense of~\cite{dag
 	where the completeness proof with respect to the norm $f\mapsto \| \sum K_{ij} f_i f_j^* \|^{1/2}$ works in the same way as the proof of Lemma~\ref{lem_complete}.
 
 	We can thus define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \xi_i \bar{\xi}_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$.
-	\tob{Is it worth elaborating on this and prove a generalization of Theorem~\ref{directsum_equiv}?}
 \end{rem}
 
 \section{Direct sums in W$^*$-categories}
