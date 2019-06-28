@@ -174,29 +174,14 @@ In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categori
 
 \subsection*{Direct integrals} We have also attempted to formulate a similar universal property for \emph{direct integrals} in W$^*$-categories, but we have not been able to make this idea work. As has been argued by Simon Henry\footnote{See \href{https://mathoverflow.net/questions/313158/what-does-it-mean-for-a-category-to-admit-direct-integrals}{mathoverflow.net/questions/313158/what-does-it-mean-for-a-category-to-admit-direct-integrals}.}, finding such a universal property requires the consideration of additional structure on the W$^*$-category. Our current best bet is that doing so will involve a notion of \emph{W$^*$-category with rigged objects}, generalizing rigged Hilbert spaces~\cite{vol4}.
 
+\subsection*{C*-algebras and W*-algebras}  We give a very brief recap of C*-algebras and W*-algebras for the benefit of readers who have a background in category theory but not in operator algebras, while referring to the literature for the details~\cite{sakai}.
+ 
+\emph{C$^*$-algebras} are abstract versions of algebras of operators on a Hilbert space which are closed in the operator norm and closed under taking adjoint operators, where taking adjoints is encoded in the ``star'' operation $*$. Similarly, \emph{W$^*$-algebras} are abstract versions of algebras of operators on a Hilbert space which are in addition closed under limits with respect to pointwise convergence (strong operator topology). In fact, every abstract C$^*$-algebra or W$^*$-algebra is isomorphic to one having such a concrete representation. For example, every $*$-closed subalgebra of the algebra of complex~$n\times n$-matrices is a C$^*$-algebra and a~W$^*$-algebra. Moreover, every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some compact Hausdorff space~$X$. And every commutative W$^*$-algebra is isomorphic to~$L^\infty(X,\mu)$ for some complete finite measure space~$(X,\mu)$.
+
 \section{C$^*$-categories and W$^*$-categories}
 \label{background}
 
 A category can be thought of as a many-object version of a monoid. This manifests itself in the fact that for any category $\cat{C}$, every endomorphism homset $\cat{C}(A,A)$ is a monoid. In the same way, a C$^*$-category is a many-object version of a unital C$^*$-algebra. Indeed in a~C$^*$-category~$\cat{C}$, every homset~$\cat{C}(A,A)$ will be a unital~C$^*$-algebra. Similarly, a W$^*$-category $\cat{C}$ is a many-object version of a W$^*$-algebra, and every homset~$\cat{C}(A,A)$ indeed carries the structure of a~W$^*$-algebra.
- 
-\begin{comment} % T: I'm not sure if the following would be helpful, given that we assume familiarity with C*- and W*-algebras
-As the definitions of~C$^*$- and~W$^*$-categories
-    will implicitly define~C$^*$- and W$^*$-algebras,
-    we only comment briefly on the latter.
-Every subalgebra of the algebra of complex~$n\times n$-matrices
-    is a C$^*$- and~W$^*$-algebra.
-More generally, every norm closed and $*$-closed subalgebra of~$\B{\H}$,
-    the bounded operators on a Hilbert space~$\H$,
-    is a C$^*$-algebra and, in fact,
-    every C$^*$-algebra is isomorphic to such a subalgebra
-        of~$\B{\H}$ for some Hilbert space~$\H$.
-Every weakly closed subalgebra of~$\B{\H}$ is a W$^*$-algebra,
-    and every W$^*$-algebra is isomorphic to such a weakly closed subalgebra.
-Moreover, every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some
-    compact Hausdorff space~$X$, 
-        and every commutative W$^*$-algebra is isomorphic to~$L^\infty(X,\mu)$ for some
-            complete finite measure space~$(X,\mu)$.
-\end{comment}
 
     The following precise definitions are due to Ghez, Lima and Roberts \cite{wstarcat}.
 
@@ -591,4 +576,4 @@ equipped with the componentwise representation of $N$, is an \emph{$I$-indexed d
 
 \end{document}
 
-% vim: ft=tex.latex
+ vim: ft=tex.latex
