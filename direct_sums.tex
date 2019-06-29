@@ -359,16 +359,16 @@ given by associating to every object $B$ the set
 \label{AiB}
 	\bigoplus_i \cat{C}(A_i , B) \ := \ \left\{ (f_i : A_i \to B)_{i\in I} \Biggm\vert \sum_i f_i f_i^* < \infty \right\}.
 \eeq
-Here, $\sum_i f_i f_i^*$ can be interpreted as converging in the ultraweak topology\footnote{For positive elements~$(x_i)_{i \in I}$ of a W$^*$-algebra, convergence and value of the sum~$\sum_{i \in I} x_i$ coincides in the ultraweak and ultrastrong topology and, in fact, equals the supremum of the partial sums.} in the case where $\cat{C}(B,B)$ is a W$^*$-algebra. If this is not the case, what we mean by the condition $\sum_i f_i f_i^* < \infty$ is that there is a fixed element which upper bounds all partial sums $\sum_{i\in S} f_i f_i^*$ for finite $S\subseteq I$, or that the sum converges ultraweakly in the double dual W$^*$-algebra $\cat{C}(B,B)^{**}$.
+Here, $\sum_i f_i f_i^*$ can be interpreted as converging in the ultraweak topology\footnote{For positive elements~$(x_i)_{i \in I}$ of a W$^*$-algebra, convergence and value of the sum~$\sum_{i \in I} x_i$ coincides in the ultraweak and ultrastrong topology and, in fact, equals the supremum of the partial sums.} in the case where $\cat{C}(B,B)$ is a W$^*$-algebra. If this is not the case, what we mean by the condition $\sum_i f_i f_i^* < \infty$ is that there is a fixed element which upper bounds all partial sums $\sum_{i\in S} f_i f_i^*$ for finite $S\subseteq I$, or equivalently that the sum converges ultraweakly in the double dual W$^*$-algebra $\cat{C}(B,B)^{**}$.
 
-The set~\eqref{AiB} is a vector space under componentwise addition and scalar multiplication, where closure under addition follows from $f_x g^*_x + g_x f^*_x \leq f_x f^*_x + g_x g^*_x$. We furthermore consider this vector space as a normed space under the norm
+The set~\eqref{AiB} is a vector space under componentwise addition and scalar multiplication, where closure under addition follows from $f_i g^*_i + g_i f^*_i \leq f_i f^*_i + g_i g^*_i$, which holds because of $(f_i - g_i) (f^*_i - g^*_i) \geq 0$. We furthermore consider this vector space as a normed space under the norm
 \[
 	\| (f_i)_{i \in I} \| := \left\| \sum_i f_i f_i^* \right\|^{1/2},
 \]
-where the triangle inequality again follows from $f_x g^*_x + g_x f^*_x \leq f_x f^*_x + g_x g^*_x$, and we interpret the sum as before either in terms of a supremum over the norm of finite partial sums, or as converging in the double dual $\cat{C}(B,B)^{**}$.
+where the triangle inequality again follows from $f_i g^*_i + g_i f^*_i \leq f_i f^*_i + g_i g^*_i$. We interpret the sum as before either in terms of a supremum over the norm of finite partial sums, or as converging in the double dual $\cat{C}(B,B)^{**}$.
 
 \begin{lem}
-	Let $\cat{C}$ be a C$^*$-category, $(A_i)_I\in\cat{C}$ a family of objects and $B\in\cat{C}$. Then $\bigoplus_i \cat{C}(A_i,B)$ is complete, and therefore a Banach space.
+	Let $\cat{C}$ be a C$^*$-category, $(A_i)_{i\in I}\in\cat{C}$ a family of objects and $B\in\cat{C}$. Then $\bigoplus_i \cat{C}(A_i,B)$ is complete, and therefore a Banach space.
 \label{lem_complete}
 \end{lem}
 
