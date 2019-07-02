@@ -436,7 +436,7 @@ For finite $I$, our direct sums are also dagger limits in the sense of~\cite{dag
 	\]
 	where the completeness proof with respect to the norm $f\mapsto \| \sum K_{ij} f_i f_j^* \|^{1/2}$ works in the same way as the proof of Lemma~\ref{lem_complete}.
 
-	We can thus define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \xi_i \bar{\xi}_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$.
+	We can thus define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \bar{\xi}_i \xi_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$.
 \end{rem}
 
 \section{Direct sums in W$^*$-categories}
@@ -523,7 +523,7 @@ Next we will show that~$\|f \|^2 = \|\sum_j f_j f_j^*\|$.
          \langle f^*, f^*\rangle
          \ =\  \uwlim_{S\subseteq I\text{ finite}} \, \Bigl\langle \sum_{j \in S} \kappa_j f^*_j,
                         \sum_{j \in S}\kappa_j f^*_j \Bigr\rangle
-         \ =\  \uwlim_{S\subseteq I\text{ finite}} \sum_{j \in S} f_j f_j^*
+         \ =\  \uwlim_{S\subseteq I\text{ finite}} \, \sum_{j \in S} f_j f_j^*
         \ = \ \sum_j f_j f_j^*
  \end{equation*}
 and so~$\| f \|^2 = \|f^*\|^2 = \|\langle f,f \rangle \|
