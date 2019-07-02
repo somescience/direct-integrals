@@ -432,11 +432,11 @@ For finite $I$, our direct sums are also dagger limits in the sense of~\cite{dag
 \begin{rem}
 	We could also consider \emph{direct sums with kernel} in the following sense. Let $K = (K_{ij}) \in \C^{I\times I}$ be a positive semidefinite matrix. Then given a family of objects $(A_i)_{i\in I}$ as before, we can consider the functor
 	\[
-		\cat{C}\longrightarrow \Ban, \qquad B\ \longmapsto\ \bigoplus_i \cat{C}(A_i, B) \ := \ \left\{\, (f_i : A_i \to B)_{i\in I} \biggm\vert \sum_{i,j} K_{ij} f_i f_j^* < \infty \,\right\},
+		\cat{C}\longrightarrow \Ban, \qquad B\ \longmapsto\ {\bigoplus_i}^K \cat{C}(A_i, B) \ := \ \left\{\, (f_i : A_i \to B)_{i\in I} \biggm\vert \sum_{i,j} K_{ij} f_i f_j^* < \infty \,\right\},
 	\]
 	where the completeness proof with respect to the norm $f\mapsto \| \sum K_{ij} f_i f_j^* \|^{1/2}$ works in the same way as the proof of Lemma~\ref{lem_complete}.
 
-	We can thus define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \bar{\xi}_i \xi_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$.
+	We can thus try to define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \bar{\xi}_i \xi_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$. We do not yet know what these direct sums with kernel will amount to in other cases.
 \end{rem}
 
 \section{Direct sums in W$^*$-categories}
