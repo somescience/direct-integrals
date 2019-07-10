@@ -174,14 +174,39 @@ In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categori
 
 \subsection*{Direct integrals} We have also attempted to formulate a similar universal property for \emph{direct integrals} in W$^*$-categories, but we have not been able to make this idea work. As has been argued by Simon Henry\footnote{See \href{https://mathoverflow.net/questions/313158/what-does-it-mean-for-a-category-to-admit-direct-integrals}{mathoverflow.net/questions/313158/what-does-it-mean-for-a-category-to-admit-direct-integrals}.}, finding such a universal property requires the consideration of additional structure on the W$^*$-category. Our current best bet is that doing so will involve a notion of \emph{W$^*$-category with rigged objects}, generalizing rigged Hilbert spaces~\cite{vol4}.
 
-\subsection*{C*-algebras and W*-algebras}  We give a very brief recap of C*-algebras and W*-algebras for the benefit of readers who have a background in category theory but not in operator algebras, while referring to the literature for the details~\cite{sakai}.
+\subsection*{C*-algebras and W*-algebras}  We give a brief recap of C*-algebras and W*-algebras for the benefit of readers who have a background in category theory but not in operator algebras, while referring to the literature for the details~\cite{sakai,kr,bram}.
  
-\emph{C$^*$-algebras} are abstract versions of algebras of operators on a Hilbert space which are closed in the operator norm and closed under taking adjoint operators, where taking adjoints is encoded in the ``star'' operation $*$. Similarly, \emph{W$^*$-algebras} are abstract versions of algebras of operators on a Hilbert space which are in addition closed under limits with respect to pointwise convergence (strong operator topology). In fact, every abstract C$^*$-algebra or W$^*$-algebra is isomorphic to one having such a concrete representation. For example, every $*$-closed subalgebra of the algebra of complex~$n\times n$-matrices is a C$^*$-algebra and a~W$^*$-algebra. Moreover, every commutative unital C$^*$-algebra is isomorphic to~$C(X)$ for some compact Hausdorff space~$X$. And every commutative W$^*$-algebra is isomorphic to~$L^\infty(X,\mu)$ for some complete finite measure space~$(X,\mu)$.
+\emph{C$^*$-algebras} are abstract versions of algebras of operators
+on a Hilbert space which are closed in the operator norm and closed
+under taking adjoint operators, where taking adjoints is encoded
+in the ``star'' operation $*$. Similarly, \emph{W$^*$-algebras} are
+abstract versions of algebras of operators on a Hilbert space which
+are in addition closed under limits with respect to the strong
+operator topology, a sort of pointwise converge.\footnote{A W$^*$-algebra
+    of operators is usually called a von Neumann algebra.
+    However, our references \cite{bas,bram} use the terms W$^*$-algebra and
+        von Neumann algebra interchangeably.}
+In fact, every abstract C$^*$-algebra or W$^*$-algebra is isomorphic
+to one having such a concrete representation~\cite[\S30\textsubscript{XIV}, \S48\textsubscript{VII}]{bram}.
+For example, every $*$-closed subalgebra
+of the algebra of complex~$n\times n$-matrices is a C$^*$-algebra
+and a~W$^*$-algebra. Moreover, every commutative unital C$^*$-algebra
+is isomorphic to~$C(X)$ for some compact Hausdorff space~$X$~\cite[\S27]{bram}. And
+every commutative W$^*$-algebra is isomorphic to~$L^\infty(X,\mu)$
+for some complete finite measure space~$(X,\mu)$~\cite[\S53\textsubscript{XI}]{bram}.
 
 \section{C$^*$-categories and W$^*$-categories}
 \label{background}
 
-A category can be thought of as a many-object version of a monoid. This manifests itself in the fact that for any category $\cat{C}$, every endomorphism homset $\cat{C}(A,A)$ is a monoid. In the same way, a C$^*$-category is a many-object version of a unital C$^*$-algebra. Indeed in a~C$^*$-category~$\cat{C}$, every homset~$\cat{C}(A,A)$ will be a unital~C$^*$-algebra. Similarly, a W$^*$-category $\cat{C}$ is a many-object version of a W$^*$-algebra, and every homset~$\cat{C}(A,A)$ indeed carries the structure of a~W$^*$-algebra.
+A category can be thought of as a many-object version of a monoid.
+This manifests itself in the fact that for any category $\cat{C}$,
+every endomorphism homset $\cat{C}(A,A)$ is a monoid. In the same
+way, a C$^*$-category is a many-object version of a unital
+C$^*$-algebra. Indeed in a~C$^*$-category~$\cat{C}$, every
+homset~$\cat{C}(A,A)$ will be a unital~C$^*$-algebra. Similarly, a
+W$^*$-category $\cat{C}$ is a many-object version of a W$^*$-algebra,
+and in a W$^*$-category every homset~$\cat{C}(A,A)$ carries the structure of
+a~W$^*$-algebra.
 
     The following precise definitions are due to Ghez, Lima and Roberts \cite{wstarcat}.
 
@@ -200,13 +225,13 @@ A category can be thought of as a many-object version of a monoid. This manifest
 		    \item involutive: $a^{**} = a$,
 		    \item conjugate linear:
 			    \[
-				    (\lambda a)^* = \overline{\lambda} a^*,\qquad (a+b)^* = a^* + b^*
+				    (\lambda a)^* \ =\  \overline{\lambda} a^*,\qquad (a+b)^* \ =\  a^* + b^*
 			    \]
 			    for morphisms $a, b : A \to B$ and $\lambda\in\C$.
 	    \end{enumerate}
     \item For every morphism~$a : A \to B$,
 	    \begin{enumerate}
-		    \item There is $b :  A \to A$ with~$a^*a=b^*b$,
+		    \item there is a $b :  A \to A$ with~$a^*a=b^*b$,
 		    \item $a^*a=0$ implies $a = 0$.
 	    \end{enumerate}
 \end{enumerate}
@@ -219,13 +244,13 @@ A complex $*$-category $(\cat{C},*)$ is called a
 \begin{enumerate}
 	\item \emph{normed $*$-category} if each homset~$\cat{C}(A,B)$ is a normed space such that
 	    \[
-		    \| ab \| \leq \|a\| \, \|b\|
+		    \| ab \| \ \leq\  \|a\| \, \|b\|
 	    \]
                 for any~$a\colon B \to C$ and~$b\colon A \to B$.
 	\item\label{Cstarcat}
     \emph{C$^*$-category} if moreover every homset is norm-complete, and the C$^*$-identity
     \[
-	\|a \|^2 = \|a^*a\|
+	\|a \|^2\  =\  \|a^*a\|
      \]
 	holds for every morphism $a$.
 \item\label{Wstarcat}
@@ -235,8 +260,8 @@ A complex $*$-category $(\cat{C},*)$ is called a
 	Equivalently~\cite[Prop.~2.15]{wstarcat}, a C$^*$-category~$\cat{C}$
             is a~W$^*$-category
             if every~$\cat{C}(A,A)$ is a W$^*$-algebra
-            and~$\cat{C}(A,B)$ is self-dual
-            as a Hilbert~$(A,A)$-module
+            and~$\cat{C}(A,B)$ is self dual
+            as a Hilbert~$\cat{C}(A,A)$-module
             with inner product~$\langle a,b\rangle \equiv a^*b$.
 \end{enumerate}
 \end{defn}
@@ -252,7 +277,11 @@ The category of Hilbert spaces with bounded linear maps between them
 
 \begin{ex}
 \label{rep_ex}
-If $A$ is a C$^*$-algebra, then the category of non-degenerate representations $\pi : A \to \B{\H}$ on Hilbert spaces $\H$ is a W$^*$-category. The morphisms $(\H_1,\pi_1) \to (\H_2,\pi_2)$ are exactly the \emph{intertwiners}, i.e.~the bounded linear maps $f : \H_1 \to \H_2$ such that the diagram
+If $A$ is a C$^*$-algebra, then the category of non-degenerate
+representations $\pi : A \to \B{\H}$ on Hilbert spaces $\H$ is a
+W$^*$-category. The morphisms~$(\H_1,\pi_1) \to (\H_2,\pi_2)$ are
+exactly the \emph{intertwiners}, i.e.~the bounded linear maps~$f :
+\H_1 \to \H_2$ such that the diagram
 \[\begin{tikzcd}
 	\H_1 \ar{r}{f} \ar[swap]{d}{\pi_1(a)} & \H_2 \ar{d}{\pi_2(a)} \\
 	\H_1 \ar{r}{f} & \H_2
@@ -352,18 +381,18 @@ We now turn to the study of infinite direct sums by defining them in terms of a 
 
 We again let $\cat{C}$ be a C$^*$-category. Let $I$ be a finite or infinite index set. For $(A_i)_{i\in I}$ a family of objects in $\cat{C}$, we consider the functor
 \[
-	\bigoplus_i \cat{C}(A_i,-) \: : \: \cat{C} \to \Ban
+	\bigoplus_i \cat{C}(A_i,-) \colon \  \cat{C} \to \Ban
 \]
 given by associating to every object $B$ the set
 \beq
 \label{AiB}
-	\bigoplus_i \cat{C}(A_i , B) \ := \ \left\{ (f_i : A_i \to B)_{i\in I} \Biggm\vert \sum_i f_i f_i^* < \infty \right\}.
+	\bigoplus_i \cat{C}(A_i , B) \ := \ \Bigl\{ (f_i : A_i \to B)_{i\in I} \Bigm\vert\textstyle  \sum_i f_i f_i^* < \infty \Bigr\}.
 \eeq
 Here, $\sum_i f_i f_i^*$ can be interpreted as converging in the ultraweak topology\footnote{For positive elements~$(x_i)_{i \in I}$ of a W$^*$-algebra, convergence and value of the sum~$\sum_{i \in I} x_i$ coincides in the ultraweak and ultrastrong topology and, in fact, equals the supremum of the partial sums.} in the case where $\cat{C}(B,B)$ is a W$^*$-algebra. If this is not the case, what we mean by the condition $\sum_i f_i f_i^* < \infty$ is that there is a fixed element which upper bounds all partial sums $\sum_{i\in S} f_i f_i^*$ for finite $S\subseteq I$, or equivalently that the sum converges ultraweakly in the double dual W$^*$-algebra $\cat{C}(B,B)^{**}$.
 
 The set~\eqref{AiB} is a vector space under componentwise addition and scalar multiplication, where closure under addition follows from $f_i g^*_i + g_i f^*_i \leq f_i f^*_i + g_i g^*_i$, which holds because of $(f_i - g_i) (f^*_i - g^*_i) \geq 0$. We furthermore consider this vector space as a normed space under the norm
 \[
-	\| (f_i)_{i \in I} \| := \left\| \sum_i f_i f_i^* \right\|^{1/2},
+	\| (f_i)_{i \in I} \| \ :=\  \Bigl\| \textstyle \sum_i f_i f_i^* \Bigr\|^{1/2},
 \]
 where the triangle inequality again follows from $f_i g^*_i + g_i f^*_i \leq f_i f^*_i + g_i g^*_i$. We interpret the sum as before either in terms of a supremum over the norm of finite partial sums, or as converging in the double dual $\cat{C}(B,B)^{**}$.
 
@@ -381,23 +410,24 @@ Suppose that we are given a Cauchy sequence of families $(f^{(n)})_{n\in\N} = ( 
 \]
 is bounded, and therefore $( f_j^{(n)} )_{n\in\N}$ is Cauchy as well; let us denote the limit by $f_j : A_j \to B$. We will now show that $f \in \bigoplus_i \cat{C}(A_i,B)$ for $f := (f_j)_{j\in I}$, which amounts to verifying the relevant square summability. The Cauchy assumption implies that the sequence $(f^{(n)})_{n\in\N}$ is uniformly bounded by some constant $C$,
 \[
-	\left\| \sum_i f_i^{(n)} (f_i^{(n)})^* \right\|^{1/2} \leq C.
+    \| f^{(n)} \| \ = \ 
+	\Bigl\| \textstyle \sum_i f_i^{(n)} (f_i^{(n)})^* \Bigr\|^{1/2} \ \leq\  C.
 \]
 Restricting to a finite partial sum over $S\subseteq I$ and taking $n\to\infty$ shows that
 \[
-	\left\| \sum_{i\in S} f_i f_i^* \right\|^{1/2} \leq C
+	\Bigl\| \textstyle \sum_{i\in S} f_i f_i^* \Bigr\|^{1/2} \ \leq\  C
 \]
 as well. Since $S$ was arbitrary, we conclude that $\| f \| \leq C$.
 
-The convergence $f_i \to f$ works similarly. By assumption, for every $\eps > 0$ we have $\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for almost all $n,m\in\N$. In particular, we know that for any finite $S \subseteq I$,
+The convergence $f_i \to f$ works similarly. By assumption, for every~$\eps > 0$ we have~$\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for almost all $n,m\in\N$. In particular, we know that for any finite $S \subseteq I$,
 \[
-	\left\| \sum_{i\in S} (f_i^{(n)} - f_i^{(m)})^* (f_i^{(n)} - f_i^{(m)}) \right\|^{1/2} \leq \eps
+	\Bigl\| \sum_{i\in S} \bigl(f_i^{(n)} - f_i^{(m)}\bigr) \bigl(f_i^{(n)} - f_i^{(m)}\bigr)^* \Bigr\|^{1/2} \ \leq\  \eps
 \]
 for almost all $n,m\in\N$. Taking $m\to\infty$ gives
 \[
-	\left\| \sum_{i\in S} (f_i^{(n)} - f_i)^* (f_i^{(n)} - f_i) \right\|^{1/2} \leq \eps.
+	\Bigl\| \sum_{i\in S} \bigl(f_i^{(n)} - f_i\bigr) \bigl(f_i^{(n)} - f_i\bigr)^* \Bigr\|^{1/2} \ \leq \ \eps.
 \]
-Since $S$ was arbitrary, we conclude $\| f^{(n)} - f \| \leq \eps$ for almost all $n$.
+Since $S$ was arbitrary, we conclude $\| f^{(n)} - f \|  \leq \eps$ for almost all $n$.
 \end{proof}
 
 The map $B \mapsto \bigoplus_i \cat{C}(A_i,B)$ is a functorial in $B$ in the obvious way, giving a functor
