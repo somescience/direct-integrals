@@ -401,7 +401,7 @@ where the triangle inequality again follows from $f_i g^*_i + g_i f^*_i \leq f_i
 \label{lem_complete}
 \end{lem}
 
-The proof generalizes the standard proof showing that $\ell^2(I)$ is a Hilbert space.
+%The proof generalizes the standard proof showing that $\ell^2(I)$ is a Hilbert space.
 
 \begin{proof}
 Suppose that we are given a Cauchy sequence of families $(f^{(n)})_{n\in\N} = ( ( f_i^{(n)} )_{i\in I} )_{n\in\N}$. For given $j$, the projection map
@@ -430,9 +430,9 @@ for almost all $n,m\in\N$. Taking $m\to\infty$ gives
 Since $S$ was arbitrary, we conclude $\| f^{(n)} - f \|  \leq \eps$ for almost all $n$.
 \end{proof}
 
-The map $B \mapsto \bigoplus_i \cat{C}(A_i,B)$ is a functorial in $B$ in the obvious way, giving a functor
+The map $B \mapsto \bigoplus_i \cat{C}(A_i,B)$ is functorial in $B$ in the obvious way, yielding a functor
 \[
-	\bigoplus_i \cat{C}(A_i,-) \: : \: \cat{C} \to \Ban.
+	\bigoplus_i \cat{C}(A_i,-)  \colon \  \cat{C} \to \Ban.
 \]
 We now get to our main definition:
 
@@ -447,7 +447,8 @@ By Corollary~\ref{unique_up_to_unitary}, this characterizes infinite direct sums
 \]
 given by associating to every object $B$ the Banach space
 \[
-	\bigoplus_i \cat{C}(B, A_i) \ := \ \left\{\, (f_i : B \to A_i)_{i\in I} \biggm\vert \sum_i f_i^* f_i < \infty \,\right\},
+	\bigoplus_i \cat{C}(B, A_i) \ := \ 
+    \Bigl\{\, \textstyle (f_i : B \to A_i)_{i\in I} \Bigm\vert \sum_i f_i^* f_i < \infty \,\Bigr\},
 \]
 where the sum is, as before, taken in the ultraweak topology of $\cat{C}(B,B)^{**}$ or to be understood in terms of uniform bounds on finite partial sums, and again considered a Banach space with respect to the norm
 \[
@@ -462,7 +463,8 @@ For finite $I$, our direct sums are also dagger limits in the sense of~\cite{dag
 \begin{rem}
 	We could also consider \emph{direct sums with kernel} in the following sense. Let $K = (K_{ij}) \in \C^{I\times I}$ be a positive semidefinite matrix. Then given a family of objects $(A_i)_{i\in I}$ as before, we can consider the functor
 	\[
-		\cat{C}\longrightarrow \Ban, \qquad B\ \longmapsto\ {\bigoplus_i}^K \cat{C}(A_i, B) \ := \ \left\{\, (f_i : A_i \to B)_{i\in I} \biggm\vert \sum_{i,j} K_{ij} f_i f_j^* < \infty \,\right\},
+		\cat{C}\longrightarrow \Ban, \qquad B\ \longmapsto\ {\bigoplus_i}^K \cat{C}(A_i, B)
+        \ := \ \Bigl\{\,  \textstyle (f_i : A_i \to B)_{i\in I} \Bigm\vert \sum_{i,j} K_{ij} f_i f_j^* < \infty \,\Bigr\},
 	\]
 	where the completeness proof with respect to the norm $f\mapsto \| \sum K_{ij} f_i f_j^* \|^{1/2}$ works in the same way as the proof of Lemma~\ref{lem_complete}.
 
@@ -505,7 +507,15 @@ As far as we know, the first definition of infinite direct sums in W$^*$-categor
 	\cat{C}(A,A) \ar{r}{\cong} \ar{d}{f\circ -} & \bigoplus_i \cat{C}(A_i,A) \ar{d}{(f\circ -)} \\
 	\cat{C}(A,B) \ar{r}{\cong} & \bigoplus_i \cat{C}(A_i,B)
 \end{tikzcd}\]
-shows that the universal property takes $f$ to the family $(f_j) := (f\kappa_j)$. By the definition of the norm on $\bigoplus_i \cat{C}(A_i,B)$ and the assumption that the universal property is an isometric isomorphism, we indeed have $\| f \|^2 = \left\| \sum_j f_j f_j^* \right\|$, which also gives $\sum_j \kappa_j \kappa_j^* < \infty$ in the case $f = \id{A}$. Conversely, it is clear that any family $(\kappa_j)$ as in~\ref{universalprop2} gives an isometric isomorphism $\cat{C}(A,B) \cong \bigoplus_i \cat{C}(A_i,B)$ that is natural in $B$.
+shows that the universal property takes $f$ to the family $(f_j)
+:= (f\kappa_j)$. By the definition of the norm on $\bigoplus_i
+\cat{C}(A_i,B)$ and the assumption that the universal property is
+an isometric isomorphism, we indeed have $\| f \|^2 = \| \sum_j
+f_j f_j^* \|$, which also gives $\sum_j \kappa_j \kappa_j^*
+< \infty$ in the case $f = \id{A}$. Conversely, it is clear that
+any family~$(\kappa_j)$ as in~\ref{universalprop2} gives an isometric
+isomorphism~$\cat{C}(A,B) \cong \bigoplus_i \cat{C}(A_i,B)$ that
+is natural in $B$.
 
 We now derive \ref{biprodsum} from \ref{universalprop2}. Applying the assumption on norms with $(f_j) := (\kappa_j)$ gives $\| \sum_i \kappa_i \kappa_i^* \| = \| \id{A} \|$, and therefore $\| \kappa_j \| \leq 1$ for all $j\in I$. For fixed $j$, the family $(\delta_{ij} : A_i \to A_j)$ corresponds to some morphism $\pi_j : A \to A_j$ such that $\pi_j\circ\kappa_i = \delta_{ij}$. Again by the isometry property, we have $\| \pi_j \| = \| \id{A} \| \leq 1$. By Lemma~\ref{isometrylemma}, this implies $\pi_j = \kappa_j^*$. We therefore have $\kappa_j^*\kappa_i = \delta_{ij}$, as desired. This also implies that the $\kappa_j \kappa_j^*$ are mutually orthogonal projections. In order to also prove the completeness relation~\eqref{complete}, let $p : A\to A$ be any other projection that is orthogonal to each of the $\kappa_j \kappa_j^*$; we need to show $p = 0$. Again by naturality, under the isomorphism $\cat{C}(A,A) \cong \bigoplus_i \cat{C}(A_i,A)$, the new $p$ corresponds to the family $(p\kappa_i) = (0)$, where $p\kappa_i = 0$ follows from the assumed orthogonality. This implies indeed $p=0$ by the uniqueness part of the universal property.
 
@@ -590,7 +600,7 @@ Rieffel has observed this for the W$^*$-categories $\Rep{A}$ from Example~\ref{r
 Let $N$ be a W$^*$-algebra. In the W$^*$-category $\NRep{N}$, any $\ell^2$-direct sum
 \beq
 \label{concrete_directsum}
-	\bigoplus_{i\in I} A_i := \left\{ (\xi_i)_{i\in I} \Biggm \vert \xi_i\in A_i,\: \sum_i \langle\xi_i,\xi_i\rangle < \infty \right\},
+	\bigoplus_{i\in I} A_i\  :=\  \Bigl\{ \textstyle (\xi_i)_{i\in I} \Bigm \vert \xi_i\in A_i,\: \sum_i \langle\xi_i,\xi_i\rangle < \infty \Bigr\},
 \eeq
 equipped with the componentwise representation of $N$, is an \emph{$I$-indexed direct sum} in the sense of Definition~\ref{directsumdef}. Conversely, every $I$-indexed direct sum in $\NRep{N}$ is of this form.
 \end{prop}
