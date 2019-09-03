@@ -131,7 +131,11 @@ urlcolor=myurlcolor}
 
 \subjclass[2010]{Primary: 46M15; Secondary: 18E05, 46L10}
 
-\thanks{\textit{Acknowledgements.} We thank Robert Furber for copious help and discussion, as well as Chris Heunen and Martti Korvanen for discussion. Part of this work was conducted while the first author was at the Max Planck Institute for Mathematics in the Sciences in Leipzig, Germany.}
+\thanks{\textit{Acknowledgements.} We thank Robert Furber for copious
+help and discussion, as well as Chris Heunen and Martti Karvonen
+for discussion. Part of this work was conducted while the first
+author was at the Max Planck Institute for Mathematics in the
+Sciences in Leipzig, Germany.}
 
 \begin{abstract}
 When formulating universal properties for objects in a dagger category, one usually expects a universal property to characterize the universal object up to unique \emph{unitary} isomorphism. We observe that this is automatically the case in the important special case of C$^*$-categories, provided that one uses enrichment in Banach spaces. We then formulate such a universal property for infinite direct sums in C$^*$-categories, and prove the equivalence with the existing definition due to Ghez, Lima and Roberts in the case of W$^*$-categories. These infinite direct sums specialize to the usual ones in the category of Hilbert spaces, and more generally in any W$^*$-category of normal representations of a W$^*$-algebra.
@@ -166,7 +170,16 @@ Let $\cat{C}$ be an additive category and $A_1,A_2\in\cat{C}$ two objects. Then 
 
 Here, \ref{coprod} and~\ref{prod} state that $A$ is a coproduct and product of $A_1$ and $A_2$, respectively. \ref{biprod} is a purely equational characterization which also proves that direct sums are preserved by every additive functor.
 
-Traditionally, universal properties have been formulated mostly for purely algebraic structures only. Treating analytical structures categorically is straightforward in some cases, but very challenging in many other cases. It usually involves equipping the categories under consideration themselves with certain analytical structures. An interesting case of where this happens is the theory of \emph{W$^*$-categories}, which model categories of Hilbert space representations of C$^*$-algebras or W$^*$-algebras. The most paradigmatic example of a W$^*$-category being $\Hilb$, the category of Hilbert spaces with bounded linear maps.
+There appear many useful universal properties for purely
+algebraic structures.  Treating analytical structures
+categorically is just as straightforward in some cases, but very challenging
+in many other cases. It usually involves equipping the categories
+under consideration themselves with certain analytical structures.
+An interesting case of where this happens is the theory of
+\emph{W$^*$-categories}, which model categories of Hilbert space
+representations of C$^*$-algebras or W$^*$-algebras. The most
+paradigmatic example of a W$^*$-category being $\Hilb$, the category
+of Hilbert spaces with bounded linear maps.
 
 In this paper, we study \emph{infinite} direct sums of objects in W$^*$-categories and in the more general case of C$^*$-categories. While our definitions and results also apply to the case of finite direct sums, they reduce to the standard Theorem~\ref{directsum_equiv_trad} in this case. As the most basic example, the Hilbert space $\ell^2(I)$ for a (finite or) infinite set $I$ is the direct sum of $I$ many copies of $\C$. Part of the \emph{raison d'\^{e}tre} for analytic structure on an algebraic object is that it often makes the objects under consideration more well-behaved. This is indeed what happens in our case as well: while Theorem~\ref{directsum_equiv_trad} does not generalize to infinite direct sums, since infinite coproducts and infinite products do no longer coincide in a general additive category (even when they exist), our main result (Theorem~\ref{directsum_equiv}) provides such a generalization for infinite direct sums in W$^*$-categories.
 
@@ -231,7 +244,7 @@ a~W$^*$-algebra.
 	    \end{enumerate}
     \item For every morphism~$a : A \to B$,
 	    \begin{enumerate}
-		    \item there is a $b :  A \to A$ with~$a^*a=b^*b$,
+		    \item there is a morphism $b :  A \to A$ with~$a^*a=b^*b$,
 		    \item $a^*a=0$ implies $a = 0$.
 	    \end{enumerate}
 \end{enumerate}
@@ -253,6 +266,7 @@ A complex $*$-category $(\cat{C},*)$ is called a
 	\|a \|^2\  =\  \|a^*a\|
      \]
 	holds for every morphism $a$.
+        (This turns $\cat{C}(A,A)$ into a~C$^*$-algebra.)
 \item\label{Wstarcat}
     \emph{W$^*$-category} if moreover
         where every homset has a Banach space predual.
@@ -264,9 +278,19 @@ A complex $*$-category $(\cat{C},*)$ is called a
             as a Hilbert~$\cat{C}(A,A)$-module
             with inner product~$\langle a,b\rangle \equiv a^*b$.
 \end{enumerate}
+As the homset~$\cat{C}(A,A)$
+    in a C$^*$-category
+    is a C$^*$-algebra,
+    we will freely use definitions from~C$^*$-algebras on endomorphisms,
+    so we say~$a\colon A \to A$ is a \emph{projection}
+        if it is a projection as an element of the~C$^*$-algebra
+        $\cat{C}(A,A)$.
+Several notions extend naturally to all morphisms:
+    a morphism~$a \colon A \to B$ is called an \emph{isometry} if~$a^*a=1$
+        (and in that case~$aa^*$ is a projection)
+        and it is a \emph{unitary} if additionally~$aa^*=1$.
 \end{defn}
 
-Clearly if we have \ref{Cstarcat}, then every $\cat{C}(A,A)$ is a C$^*$-algebra. Similarly, \ref{Wstarcat} makes $\cat{C}(A,A)$ into a W$^*$-algebra.
 
 We again refer to~\cite{wstarcat} for more details on the following examples.
 
@@ -337,10 +361,10 @@ Let~$a \colon A \leftrightarrows B \colon b$ be any two morphisms
 \begin{proof}
     To start, note~$\|a ^*a\| = \|a\|^2 \leq 1$, so~$a^*a \leq 1$.
     Similarly~$b^*b \leq 1$.
-    Combined~$1 = b^*a^*ab \leq b^*b \leq 1$, hence~$b^*b=1$.
+    Combined~$1 = b^*a^*ab \leq b^*b \leq 1$, hence~$b^*b=1$
+        and so~$b$ is an isometry.
     Similarly~$aa^*=1$.
-    Clearly~$bb^*bb^* = b 1 b^* = bb^*$, so~$b$ is an isometry.
-    Now~$a (1-bb^*) a^* = aa^* - abb^*a^* = 1-1=0$.
+    Now~$a (1-bb^*) a^* = aa^* - abb^*a^* = 1-1=0 \leq 0$.
     So~$a^* (1-0) a \leq bb^*$ by Lemma~\ref{contrapositionlemma}.
     Similarly~$bb^* \leq a^*a$. Hence~$bb^*=a^*a$.
     We are done: $a = aa^*a=abb^*=b^*$.
@@ -379,7 +403,7 @@ This uniqueness up to unique unitary is a desideratum of a good notion of univer
 
 We now turn to the study of infinite direct sums by defining them in terms of a universal property as in Definition~\ref{def_univ}, and then proving that the existing notions of direct sum in the category of Hilbert spaces and more generally all W$^*$-categories indeed satisfy this universal property. While our considerations also apply to finite direct sums as a special case, in this case our discussion provides nothing new, since then our universal property reduces to the standard one of biproducts in an additive category.
 
-We again let $\cat{C}$ be a C$^*$-category. Let $I$ be a finite or infinite index set. For $(A_i)_{i\in I}$ a family of objects in $\cat{C}$, we consider the functor
+We again let $\cat{C}$ be a C$^*$-category. Let $I$ be a finite or infinite index set. For a family $(A_i)_{i\in I}$ of objects in $\cat{C}$, we consider the functor
 \[
 	\bigoplus_i \cat{C}(A_i,-) \colon \  \cat{C} \to \Ban
 \]
@@ -395,13 +419,16 @@ The set~\eqref{AiB} is a vector space under componentwise addition and scalar mu
 	\| (f_i)_{i \in I} \| \ :=\  \Bigl\| \sum_i f_i f_i^* \Bigr\|^{1/2},
 \]
 where we interpret the sum as before either in terms of a supremum over the norm of finite partial sums, or as converging in the double dual $\cat{C}(B,B)^{**}$.
-The triangle inequality for this norm is not directly obvious.
-t follows from the following generalization of the
-    Cauchy--Schwarz inequality, see e.g.~\cite[\S142\textsubscript{III \& IV}]{bas},
-\begin{equation*}
-    \Bigl(\sum_i f_i g_i^*\Bigr) \Bigl(\sum_j g_j f_j^*\Bigr)
-    \ \leq \ \Bigl\| \sum_i g_ig_i^* \Bigr\| \: \sum_j f_j f_j^* .
-\end{equation*}
+(This norm is in fact the one associated to the~$B$-valued inner
+        product~$\langle (f_i)_i, (g_i)_i \rangle  :=
+                \sum_i f_ig_i^*$,
+                i.e.~$\| (f_i)_i \|^2 = \|\langle (f_i)_i, (f_i)_i \rangle\|$.
+        The proof of the triangle inequality
+                is similar to that for a
+            norm associated to a regular inner product,
+            using a generalized Cauchy--Schwarz inequality.
+            See for instance~\cite[\S142\textsubscript{III--V}]{bas}
+                or~\cite[Prop.~2.3]{paschke}.)
 
 \begin{lem}
 	Let $\cat{C}$ be a C$^*$-category, $(A_i)_{i\in I}\in\cat{C}$ a family of objects and $B\in\cat{C}$. Then $\bigoplus_i \cat{C}(A_i,B)$ is complete, and therefore a Banach space.
@@ -415,7 +442,7 @@ Suppose that we are given a Cauchy sequence of families $(f^{(n)})_{n\in\N} = ( 
 \[
 	\bigoplus_i \cat{C}(A_i,B) \longrightarrow \cat{C}(A_j,B)	
 \]
-is bounded, and therefore $( f_j^{(n)} )_{n\in\N}$ is Cauchy as well; let us denote the limit by $f_j : A_j \to B$. We will now show that $f \in \bigoplus_i \cat{C}(A_i,B)$ for $f := (f_j)_{j\in I}$, which amounts to verifying the relevant square summability. The Cauchy assumption implies that the sequence $(f^{(n)})_{n\in\N}$ is uniformly bounded by some constant $C$,
+is bounded, and therefore $( f_j^{(n)} )_{n\in\N}$ is Cauchy as well; let us denote the limit by $f_j : A_j \to B$. We will now show that $f \in \bigoplus_i \cat{C}(A_i,B)$ for $f := (f_j)_{j\in I}$, which amounts to verifying the relevant square summability. The Cauchy assumption implies that the sequence $(f^{(n)})_{n\in\N}$ is uniformly bounded by some constant $C$, i.e.
 \[
     \| f^{(n)} \| \ = \ 
 	\Bigl\| \textstyle \sum_i f_i^{(n)} (f_i^{(n)})^* \Bigr\|^{1/2} \ \leq\  C.
@@ -426,7 +453,7 @@ Restricting to a finite partial sum over $S\subseteq I$ and taking $n\to\infty$ 
 \]
 as well. Since $S$ was arbitrary, we conclude that $\| f \| \leq C$.
 
-The convergence $f_i \to f$ works similarly. By assumption, for every~$\eps > 0$ we have~$\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for almost all $n,m\in\N$. In particular, we know that for any finite $S \subseteq I$,
+    The convergence $f^{(n)} \to f$ works similarly. By assumption, for every~$\eps > 0$ we have~$\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for almost all $n,m\in\N$. In particular, we know that for any finite $S \subseteq I$,
 \[
 	\Bigl\| \sum_{i\in S} \bigl(f_i^{(n)} - f_i^{(m)}\bigr) \bigl(f_i^{(n)} - f_i^{(m)}\bigr)^* \Bigr\|^{1/2} \ \leq\  \eps
 \]
@@ -497,7 +524,8 @@ There is a family of
         morphisms~$\left(f_j: A_j \to B\right)_{j\in I}$
         with~$\sum_{j \in I}f_j f_j^* < \infty$,
         there is a unique~$f\colon A \to B$
-        such that $f \kappa_j = f_j$ for all~$j \in I$, and $\| f \|^2 = \| \sum_{j\in I} f_j f_j^* \|$.
+        such that $f \kappa_j = f_j$ for all~$j \in I$.
+Moreover, such an~$f$ satisfies~$\| f \|^2 = \| \sum_{j\in I} f_j f_j^* \|$.
 \item\label{biprodsum} There is a family of morphisms $\left(\kappa_j : A_j \to A\right)_{j\in I}$ such that $\kappa_i^*\kappa_j = \delta_{ij}$, and
 \beq
 \label{complete}
@@ -532,7 +560,7 @@ The homset~$C(B,A)$
     is a self-dual Hilbert~$\cat{C}(B,B)$-module
     with~$\cat{C}(B,B)$-valued inner
     product~$\langle g, f\rangle \equiv g^*f$~\cite[Proposition~2.15]{wstarcat}.
-The self-duality is equivalent to the fact
+The self duality is equivalent to the fact
     that~$\cat{C}(B,A)$ is complete in the \emph{ultranorm topology};
     this is the topology
     generated by the seminorms~$\| f \|_\omega \equiv \omega(\langle f,f\rangle)^\frac{1}{2}$
@@ -549,10 +577,10 @@ The self-duality is equivalent to the fact
     \Bigr) &\qquad&\text{as~$\kappa_j^*\kappa_i = \delta_{ij}$}.
 \end{alignat*}
 From this and~$\sum_{j \in I} f_jf_j^* < \infty$,
-    it follows that the net~$\left(\sum_{j \in S} \kappa_j f_j^*\right)_S$
+    it follows that the net~$(\sum_{j \in S} \kappa_j f_j^*)_S$
     is ultranorm Cauchy as $S$ ranges over all finite subsets of $I$.
-    Define~$f := \left( \sum_{j \in I} \kappa_jf_j^* \right)^*$,
-        where the sum is understood to converge ultranorm.
+    Define~$f := ( \sum_{j \in I} \kappa_jf_j^* )^*$,
+        where the sum is understood to converge in the ultranorm topology.
 The assignment~$g \mapsto \kappa_j^*g$
     yields a bounded~$\cat{C}(B,B)$-linear map between
     the Hilbert~$\cat{C}(B,B)$-modules~$\cat{C}(B,A)$ and~$\cat{C}(B,A_j)$
@@ -580,7 +608,7 @@ Finally, to show uniqueness,
     morphism with~$f' \kappa_i = f_i$.
     Note that~$\sum_j \kappa_j \kappa_j^*$
        converges ultrastrongly
-       and so ultranorm as well.
+       and so in the ultranorm topology as well.
 With similar reasoning as before,
         the composition map~$g \mapsto f' g$ is ultranorm continuous,
         hence
@@ -592,7 +620,7 @@ With similar reasoning as before,
     \ =\ \sum_{j \in I} f \kappa_j \kappa_j^*
     \ =\ f,
 \end{equation*}
-    where the sums converge ultranorm.
+    where the sums converge in the ultranorm topology.
 \end{proof}
 
 It is now straightforward to note:
