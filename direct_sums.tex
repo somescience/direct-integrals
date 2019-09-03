@@ -282,9 +282,8 @@ As the homset~$\cat{C}(A,A)$
     in a C$^*$-category
     is a C$^*$-algebra,
     we will freely use definitions from~C$^*$-algebras on endomorphisms,
-    so we say~$a\colon A \to A$ is a \emph{projection}
-        if it is a projection as an element of the~C$^*$-algebra
-        $\cat{C}(A,A)$.
+    so we say e.g.~that~$a\colon A \to A$ is a \emph{projection} if it is a projection as an element of the~C$^*$-algebra $\cat{C}(A,A)$.
+
 Several notions extend naturally to all morphisms:
     a morphism~$a \colon A \to B$ is called an \emph{isometry} if~$a^*a=1$
         (and in that case~$aa^*$ is a projection)
@@ -321,7 +320,7 @@ If $N$ is a W$^*$-algebra, then the category of normal unital representations on
 \section{Universal properties in C$^*$-categories}
 \label{univ_props}
 
-In this section, we write $\cat{C}$ for a C$^*$-category \cite{wstarcat}.
+In this section, we write $\cat{C}$ for a C$^*$-category.
 We start with a generalization of~\cite[Lemma 7]{westerbaan2016universal}
     to C$^*$-categories before discussing universal properties.
 
@@ -453,18 +452,22 @@ Restricting to a finite partial sum over $S\subseteq I$ and taking $n\to\infty$ 
 \]
 as well. Since $S$ was arbitrary, we conclude that $\| f \| \leq C$.
 
-    The convergence $f^{(n)} \to f$ works similarly. By assumption, for every~$\eps > 0$ we have~$\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for almost all $n,m\in\N$. In particular, we know that for any finite $S \subseteq I$,
+    The convergence $f^{(n)} \to f$ works similarly. By assumption, for every~$\eps > 0$ we have~$\left\| f^{(n)} - f^{(m)} \right\| \leq \eps$ for sufficiently large $n,m\in\N$. In particular, we know that for any finite $S \subseteq I$,
 \[
 	\Bigl\| \sum_{i\in S} \bigl(f_i^{(n)} - f_i^{(m)}\bigr) \bigl(f_i^{(n)} - f_i^{(m)}\bigr)^* \Bigr\|^{1/2} \ \leq\  \eps
 \]
-for almost all $n,m\in\N$. Taking $m\to\infty$ gives
+for sufficiently large $n,m\in\N$. Taking $m\to\infty$ gives
 \[
 	\Bigl\| \sum_{i\in S} \bigl(f_i^{(n)} - f_i\bigr) \bigl(f_i^{(n)} - f_i\bigr)^* \Bigr\|^{1/2} \ \leq \ \eps.
 \]
-Since $S$ was arbitrary, we conclude $\| f^{(n)} - f \|  \leq \eps$ for almost all $n$.
+Since $S$ was arbitrary, we conclude $\| f^{(n)} - f \|  \leq \eps$ for sufficiently large $n$.
 \end{proof}
 
-The map $B \mapsto \bigoplus_i \cat{C}(A_i,B)$ is functorial in $B$ in the obvious way, yielding a functor
+The map $B \mapsto \bigoplus_i \cat{C}(A_i,B)$ is functorial in $B$ in the obvious way: for $g : B \to C$, a family $(f_i : A_i \to B)_{i\in I}$ gets mapped to $(gf_i : A_i \to C)_{i\in I}$, which satisfies the relevant square integrability condition because of
+\[
+	\sum_i (g f_i)(g f_i)^* = g \left( \sum_i f_i f_i^* \right) g^* < \infty.
+\]
+Thus we get a functor
 \[
 	\bigoplus_i \cat{C}(A_i,-)  \colon \  \cat{C} \to \Ban.
 \]
@@ -495,6 +498,10 @@ For finite $I$, our direct sums are also dagger limits in the sense of~\cite{dag
 \end{rem}
 
 \begin{rem}
+	One may wonder whether our direct sums can be obtained as \emph{weighted limits} or \emph{weighted colimits}, which are generally regarded as the adequate notion of limits and colimits in an enriched context like ours. We believe this not to be the case: using enrichment in $\Ban$, there does not seem to be any weight which would give rise to the functor $\bigoplus_i \cat{C}(A_i,-)$ from~\eqref{AiB}. The main reason is that mere $\Ban$-enrichment does not have access to the involution, which however is a crucial piece of structure in~\eqref{AiB}.
+\end{rem}
+
+\begin{rem}
 	We could also consider \emph{direct sums with kernel} in the following sense. Let $K = (K_{ij}) \in \C^{I\times I}$ be a positive semidefinite matrix. Then given a family of objects $(A_i)_{i\in I}$ as before, we can consider the functor
 	\[
 		\cat{C}\longrightarrow \Ban, \qquad B\ \longmapsto\ {\bigoplus_i}^K \cat{C}(A_i, B)
@@ -502,7 +509,7 @@ For finite $I$, our direct sums are also dagger limits in the sense of~\cite{dag
 	\]
 	where the completeness proof with respect to the norm $f\mapsto \| \sum K_{ij} f_i f_j^* \|^{1/2}$ works in the same way as the proof of Lemma~\ref{lem_complete}.
 
-	We can thus try to define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \bar{\xi}_i \xi_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$. We do not yet know what these direct sums with kernel will amount to in other cases.
+	We can thus define the \emph{direct sum with kernel $K$} to be an object representing this functor in the same way as above. For example in $\Hilb$ with $A_i = \C$ for all $i\in I$, the resulting direct sum would be the space of families $(\xi_i)_{i\in I}$ with $\xi_i\in\C$ that are $K$-square summable in that $\sum_{i,j} K_{ij} \bar{\xi}_i \xi_j < \infty$, turned into a Hilbert space with respect to the inner product with kernel $K$. We do not yet know what these direct sums with kernel will amount to in other cases.
 \end{rem}
 
 \section{Direct sums in W$^*$-categories}
@@ -552,7 +559,7 @@ any family~$(\kappa_j)$ as in~\ref{universalprop2} gives an isometric
 isomorphism~$\cat{C}(A,B) \cong \bigoplus_i \cat{C}(A_i,B)$ that
 is natural in $B$.
 
-We now derive \ref{biprodsum} from \ref{universalprop2}. Applying the assumption on norms with $(f_j) := (\kappa_j)$ gives $\| \sum_i \kappa_i \kappa_i^* \| = \| \id{A} \|$, and therefore $\| \kappa_j \| \leq 1$ for all $j\in I$. For fixed $j$, the family $(\delta_{ij} : A_i \to A_j)$ corresponds to some morphism $\pi_j : A \to A_j$ such that $\pi_j\circ\kappa_i = \delta_{ij}$. Again by the isometry property, we have $\| \pi_j \| = \| \id{A} \| \leq 1$. By Lemma~\ref{isometrylemma}, this implies $\pi_j = \kappa_j^*$. We therefore have $\kappa_j^*\kappa_i = \delta_{ij}$, as desired. This also implies that the $\kappa_j \kappa_j^*$ are mutually orthogonal projections. In order to also prove the completeness relation~\eqref{complete}, let $p : A\to A$ be any other projection that is orthogonal to each of the $\kappa_j \kappa_j^*$; we need to show $p = 0$. Again by naturality, under the isomorphism $\cat{C}(A,A) \cong \bigoplus_i \cat{C}(A_i,A)$, the new $p$ corresponds to the family $(p\kappa_i) = (0)$, where $p\kappa_i = 0$ follows from the assumed orthogonality. This implies indeed $p=0$ by the uniqueness part of the universal property.
+We now derive \ref{biprodsum} from \ref{universalprop2}. Applying the assumption on norms with $(f_j) := (\kappa_j)$ gives $\| \sum_i \kappa_i \kappa_i^* \| = \| \id{A} \|$, and therefore $\| \kappa_j \| \leq 1$ for all $j\in I$. For fixed $j$, the family $(\delta_{ij} : A_i \to A_j)_{i\in I}$ corresponds to some morphism $\pi_j : A \to A_j$ such that $\pi_j\circ\kappa_i = \delta_{ij}$. Again by the isometry property, we have $\| \pi_j \|^2 = \| \sum_i \delta_{ij} \delta_{ij}^* \| = \| \id{A_j} \| \leq 1$. By Lemma~\ref{isometrylemma}, this implies $\pi_j = \kappa_j^*$. We therefore have $\kappa_j^*\kappa_i = \delta_{ij}$, as desired. This also implies that the $\kappa_j \kappa_j^*$ are mutually orthogonal projections. In order to also prove the completeness relation~\eqref{complete}, let $p : A\to A$ be any other projection that is orthogonal to each of the $\kappa_j \kappa_j^*$; we need to show $p = 0$. Again by naturality, under the isomorphism $\cat{C}(A,A) \cong \bigoplus_i \cat{C}(A_i,A)$, the new $p$ corresponds to the family $(p\kappa_i) = (0)$, where $p\kappa_i = 0$ follows from the assumed orthogonality. This implies indeed $p=0$ by the uniqueness part of the universal property.
 
 We finally show that \ref{biprodsum} implies \ref{universalprop2}. So let~$\left(f_j: A_j \to B\right)_{j\in I}$ be any family of morphisms
         with~$\sum_{j \in I}f_jf_j^* < \infty$.
