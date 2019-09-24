@@ -1,0 +1,52 @@
+Many thanks to the referee for their helpful and considerate suggestions.
+
+"the relationship to weighted (co)limits should be clarified"
+-> We have added Remark 4.4 on the referee's question about weighted colimits.
+
+"It seems that the correct spelling is "Karvonen""
+-> We have corrected 'Korvanen' to 'Karvonen'.
+
+"I see the point that analytical structures aren't usually understood in terms of universal properties, but the sentence in quotes sounds a bit bizarre - how about geometric structures?"
+-> We have rephrased the sentence.
+
+"It would be good for the authors to give the definitions of a projection, isometry, unitary."
+-> We have added definitions of isometry and unitary to Definition 2.2. Our proof of Lemma 3.2 was overkill, in that b*b = 1 is enough, and we have removed the extra unnecessary part.
+
+"would read better as "there is a _morphism_ b:A->A...""
+-> Fixed.
+
+"Proof of Lemma 3.2: I don't understand how the reasoning..."
+-> The reviewer tried to pattern match the wrong thing. We added "... = 1-1 = 0 ≤ 0".
+
+"The word order in "For A_i a  family of objects" would be improved by e.g. "For a family A_i of objects in C.."" or "For a family of objects A_i in C...""
+-> Fixed.
+
+"please derive explicitly the triangle equality for the norm"
+->  We reformulated the text to make more clear that this is a standard result known from the theory of Hilbert C*-modules. We also added a second citation to Paschke’s original proposition.
+
+"might read better by adding an "i.e.", as in  "is uniformly bounded by some constant C, i.e.""
+-> Fixed.
+
+"Typo: should be "The covergence f^{(n)}->f works similarly" rather than "f_i->f""
+-> Fixed.
+
+"it might be better to say "for suffienctly large n""
+-> We have followed the referee's suggestion of using "for sufficiently large n".
+
+"However, it would make the readers life easier to write down the easy proof"
+-> We have added some explanation, now on top of p.7.
+
+"no need to try, just do"
+-> Fixed, we just do.
+
+"them 5.1(b) is poorly worded"
+-> Fixed.
+
+"proof of (b)->(c)"
+-> Yes, corrected.
+
+"Maybe this is standard, but it hurts my eyes"
+-> Fixed.
+
+"ref [4] has been published in TAC, please cite it appropriately."
+-> Fixed.
